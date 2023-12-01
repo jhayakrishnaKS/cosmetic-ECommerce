@@ -42,6 +42,7 @@ Embrace the beauty of simplicity and functionality with our E-Commerce platform.
 👉 '🗃️-MySql' for Database 
 
 # ➡️ Screenshots
-![Uploading Angular16ShoppingRestApi and 1 more page - Profile 1 - Microsoft​ Edge 01-12-2023 14_49_24.png…]()
+
+![Angular16ShoppingRestApi and 1 more page - Profile 1 - Microsoft​ Edge 01-12-2023 14_49_24](https://github.com/jhayakrishnaKS/cosmetic-ECommerce/assets/145537398/5c529475-e42a-429a-968a-96e17170473a)
 
 
