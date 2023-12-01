@@ -47,3 +47,25 @@ Embrace the beauty of simplicity and functionality with our E-Commerce platform.
 
 ![Angular16ShoppingRestApi and 1 more page - Profile 1 - Microsoft​ Edge 01-12-2023 14_51_53](https://github.com/jhayakrishnaKS/cosmetic-ECommerce/assets/145537398/be5a75c0-623f-41d1-b4c2-6d08414ce8a7)
 ![Angular16ShoppingRestApi and 1 more page - Profile 1 - Microsoft​ Edge 01-12-2023 14_52_09](https://github.com/jhayakrishnaKS/cosmetic-ECommerce/assets/145537398/260e725a-1d31-4968-acb4-ad8edacd6167)
+
+# ➡️ Challenges
+
+**Backend Challenges:**
+
+1. **Mapping:** Navigating complex data relationships and ensuring seamless object-relational mapping (ORM) for efficient backend functionality. 🗺️
+
+2. **Connecting to SQL:** Overcoming connectivity hurdles and optimizing SQL queries for smooth database interactions, balancing performance and reliability. 🔗
+
+3. **Naming Conventions:** Establishing consistent and meaningful naming conventions for database tables, fields, and backend code to enhance maintainability and collaboration. 🏷️
+
+**Frontend Challenges:**
+
+1. **User Experience (UX):** Crafting an intuitive and visually appealing user interface that caters to diverse user needs and preferences. 🎨✨
+
+2. **Responsive Design:** Ensuring a seamless experience across various devices and screen sizes, addressing challenges in responsiveness and adaptability. 📱💻
+
+3. **Performance Optimization:** Balancing feature-rich interfaces with optimal page load times, addressing challenges in code efficiency and resource utilization. 🚀⏱️
+
+4. **Browser Compatibility:** Tackling variations in browser rendering and functionality to ensure a consistent experience for users across different browsers. 🌐🤝
+
+Navigating these challenges in both backend and frontend development ensures a robust and user-friendly application. 💪💻
