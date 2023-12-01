@@ -31,5 +31,17 @@ Embrace the beauty of simplicity and functionality with our E-Commerce platform.
 
 👉 Role - Admin
     📧Username = "admin" | 🔐Password = "admin"
+
 👉 Role - User
     📧Username = "user" | 🔐Password = "user"
+
+# ➡️ Technologies used
+
+👉 '💻-Spring Boot Java' for Back end
+👉 '💻-Angular' for Front end 
+👉 '🗃️-MySql' for Database 
+
+# ➡️ Screenshots
+![Uploading Angular16ShoppingRestApi and 1 more page - Profile 1 - Microsoft​ Edge 01-12-2023 14_49_24.png…]()
+
+
