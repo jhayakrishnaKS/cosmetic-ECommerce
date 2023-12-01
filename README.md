@@ -69,3 +69,30 @@ Embrace the beauty of simplicity and functionality with our E-Commerce platform.
 4. **Browser Compatibility:** Tackling variations in browser rendering and functionality to ensure a consistent experience for users across different browsers. 🌐🤝
 
 Navigating these challenges in both backend and frontend development ensures a robust and user-friendly application. 💪💻
+
+## ➡️ Hardest Errors
+
+🚩 Internal server error for Java persistence exception for date - Successfully resolved by converting the date format. 📅✅
+
+🚩 Internal server error Hibernate nested exception - Overcame the challenge by reworking on the modal mapping for smoother interactions. 🧩🔄
+
+🚩 Internal server error for deleting nested entities - Successfully addressed by adding the cascade type "ALL" for comprehensive entity management. 🗑️🔄
+
+🚩 Altering the entity and updating it - Seamlessly implemented entity modifications and updates for enhanced functionality. 🔄🔄
+
+🚩 Handling logic for more than 1 row found in one-to-one mapping - Navigated through SQL and server errors, resolving issues with meticulous attention and logging. 🗺️📝🚧
+
+# ➡️ Repository Link
+# Reposititory link of the front end:
+https://github.com/jhayakrishnaKS/cosmetic-ECommerce
+
+# Reposititory link of the back end:
+https://github.com/jhayakrishnaKS/Spring-Boot-Ecommerce-cosmetic
+
+# ➡️ MySQL Schema
+
+![MySQL Workbench 01-12-2023 15_17_09](https://github.com/jhayakrishnaKS/cosmetic-ECommerce/assets/145537398/38ea1a84-a21a-41de-bbbe-447bcfc4aedd)
+
+# ➡️ Demo Video Url
+
+[https://drive.google.com/file/d/1STk3F75SLwD8knUYjFMxIAKL-k1r7GIa/view?usp=sharing]
