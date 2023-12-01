@@ -84,10 +84,10 @@ Navigating these challenges in both backend and frontend development ensures a r
 
 # ➡️ Repository Link
 # Reposititory link of the front end:
-https://github.com/jhayakrishnaKS/cosmetic-ECommerce
+[(https://github.com/jhayakrishnaKS/cosmetic-ECommerce)]
 
 # Reposititory link of the back end:
-https://github.com/jhayakrishnaKS/Spring-Boot-Ecommerce-cosmetic
+[(https://github.com/jhayakrishnaKS/Spring-Boot-Ecommerce-cosmetic)]
 
 # ➡️ MySQL Schema
 
@@ -95,4 +95,4 @@ https://github.com/jhayakrishnaKS/Spring-Boot-Ecommerce-cosmetic
 
 # ➡️ Demo Video Url
 
-[https://drive.google.com/file/d/1STk3F75SLwD8knUYjFMxIAKL-k1r7GIa/view?usp=sharing]
+[(https://drive.google.com/file/d/1STk3F75SLwD8knUYjFMxIAKL-k1r7GIa/view?usp=sharing)]
