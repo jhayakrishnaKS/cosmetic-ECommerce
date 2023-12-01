@@ -2,7 +2,7 @@
 
 
 # ➡️ Description
-Welcome to our Beauty and Cosmetic E-Commerce Platform! 🌟
+Welcome to My Beauty and Cosmetic E-Commerce Platform! 🌟
 
 **User Interface:**
 1. **Login/Register:** Securely access your personalized beauty haven.
