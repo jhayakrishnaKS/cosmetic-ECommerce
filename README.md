@@ -38,7 +38,9 @@ Embrace the beauty of simplicity and functionality with our E-Commerce platform.
 # ➡️ Technologies used
 
 👉 '💻-Spring Boot Java' for Back end
-👉 '💻-Angular' for Front end 
+
+👉 '💻-Angular' for Front end
+
 👉 '🗃️-MySql' for Database 
 
 # ➡️ Screenshots
