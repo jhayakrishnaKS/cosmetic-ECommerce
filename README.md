@@ -26,3 +26,10 @@ Welcome to our Beauty and Cosmetic E-Commerce Platform! 🌟
 5. **Order Status Page:** Streamline order management by updating and monitoring order statuses.
 
 Embrace the beauty of simplicity and functionality with our E-Commerce platform. Your journey to beauty starts here! 💄✨
+
+## ➡️ Credentials
+
+👉 Role - Admin
+    📧Username = "admin" | 🔐Password = "admin"
+👉 Role - User
+    📧Username = "user" | 🔐Password = "user"
