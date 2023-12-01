@@ -74,8 +74,6 @@ Navigating these challenges in both backend and frontend development ensures a r
 
 ## ➡️ Hardest Errors
 
-🚩 Internal server error for Java persistence exception for date - Successfully resolved by converting the date format. 📅✅
-
 🚩 Internal server error Hibernate nested exception - Overcame the challenge by reworking on the modal mapping for smoother interactions. 🧩🔄
 
 🚩 Internal server error for deleting nested entities - Successfully addressed by adding the cascade type "ALL" for comprehensive entity management. 🗑️🔄
