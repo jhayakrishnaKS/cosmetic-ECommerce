@@ -1,0 +1,104 @@
+/* Modal styles */
+.modal-body input {
+  color: var(--red-700);
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.modal-content:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Table styles */
+.table-bordered {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 20px;
+  transition: background 0.3s ease-in-out;
+}
+
+.table-bordered:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Button styles */
+.btn-primary,
+.btn-danger,
+.btn-dark {
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: var(--primary-500);
+  color: var(--primary-900);
+}
+
+.btn-danger {
+  background: var(--red-500);
+  color: var(--primary-900);
+}
+
+.btn-dark {
+  background: var(--primary-700);
+  color: var(--primary-900);
+}
+
+.btn-primary:hover,
+.btn-danger:hover,
+.btn-dark:hover {
+  filter: brightness(1.2);
+}
+
+/* Table styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-color: black;
+}
+
+.table th,
+.table td {
+  border: 1px solid rgba(65, 64, 64, 0.203);
+  padding: 10px;
+}
+
+/* Add some spacing between the table cells */
+.table td,
+.table th {
+  text-align: center;
+}
+
+/* Hover effect for table rows */
+.table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+/* Table head styles */
+.table thead {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Table head cell styles */
+.table th {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 10px;
+}
+
+/* Add some spacing between the table cells */
+.table td,
+.table th {
+  text-align: center;
+}

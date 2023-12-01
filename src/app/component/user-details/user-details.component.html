@@ -1,0 +1,189 @@
+<div class="row mt-3 mx-3" style="margin-top: 25px">
+  <div class="col-md-3">
+    <div class="text-center" style="margin-top: 50px; margin-left: 10px">
+      <i
+        id="animationDemo"
+        data-mdb-animation="slide-right"
+        data-mdb-toggle="animation"
+        data-mdb-animation-reset="true"
+        data-mdb-animation-start="onScroll"
+        data-mdb-animation-on-scroll="repeat"
+        class="fas fa-3x fa-shipping-fast"
+        style="color: var(--primary-700)"
+      ></i>
+      <h3 class="mt-3" style="color: var(--primary-700)">Welcome User!!!</h3>
+    </div>
+    <div class="text-center">
+      <a href="" type="submit" class="btn btn-primary btn-rounded back-button"
+        >Go Back</a
+      >
+    </div>
+  </div>
+  <div class="col-md-9 justify-content-center">
+    <div class="card card-custom pb-4">
+      <div class="card-body mt-0 mx-5">
+        <div class="text-center mb-3 pb-2 mt-3">
+          <h4 style="color: #495057">Delivery Details</h4>
+        </div>
+        <!-- Form for adding a new address -->
+        <form #addressForm="ngForm" (ngSubmit)="onSubmit(addressForm)">
+          <div class="row mb-4">
+            <div class="col">
+              <div class="form-outline mb-3">
+                <label
+                  class="form-label"
+                  for="form9Example6"
+                  style="color: var(--primary-700)"
+                  >Address</label
+                >
+                <input
+                  type="text"
+                  id="form9Example6"
+                  class="form-control input-custom"
+                  style="color: var(--primary-700)"
+                  [(ngModel)]="address.address"
+                  name="address"
+                  required
+                  #modelAddress="ngModel"
+                  [ngClass]="{
+                    'is-invalid':
+                      modelAddress.invalid &&
+                      (modelAddress.dirty || modelAddress.touched),
+                    'is-valid':
+                      !modelAddress.invalid &&
+                      (modelAddress.dirty || modelAddress.touched)
+                  }"
+                />
+                <div
+                  *ngIf="
+                    modelAddress.invalid &&
+                    (modelAddress.dirty || modelAddress.touched)
+                  "
+                  class="text-danger"
+                >
+                  Address required
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline mb-3">
+                <label
+                  class="form-label"
+                  for="form9Example3"
+                  style="color: var(--primary-700)"
+                  >City</label
+                >
+                <input
+                  type="text"
+                  id="form9Example3"
+                  class="form-control input-custom"
+                  style="color: var(--primary-700)"
+                  [(ngModel)]="addressModel.city"
+                  name="city"
+                  required
+                  #modelCity="ngModel"
+                  [ngClass]="{
+                    'is-invalid':
+                      modelCity.invalid &&
+                      (modelCity.dirty || modelCity.touched),
+                    'is-valid':
+                      !modelCity.invalid &&
+                      (modelCity.dirty || modelCity.touched)
+                  }"
+                />
+                <div
+                  *ngIf="
+                    modelCity.invalid && (modelCity.dirty || modelCity.touched)
+                  "
+                  class="text-danger"
+                >
+                  city required
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline mb-3">
+                <label
+                  class="form-label"
+                  for="form9Example4"
+                  style="color: var(--primary-700)"
+                  >ZipCode</label
+                >
+                <input
+                  type="text"
+                  id="form9Example4"
+                  class="form-control input-custom"
+                  style="color: var(--primary-700)"
+                  [(ngModel)]="addressModel.zipcode"
+                  name="zipcode"
+                  required
+                  #modelZipcode="ngModel"
+                  [ngClass]="{
+                    'is-invalid':
+                      modelZipcode.invalid &&
+                      (modelZipcode.dirty || modelZipcode.touched),
+                    'is-valid':
+                      !modelZipcode.invalid &&
+                      (modelZipcode.dirty || modelZipcode.touched)
+                  }"
+                />
+                <div
+                  *ngIf="
+                    modelZipcode.invalid &&
+                    (modelZipcode.dirty || modelZipcode.touched)
+                  "
+                  class="text-danger"
+                >
+                  ZipCode required
+                </div>
+              </div>
+            </div>
+
+            <div class="float-end">
+              <button type="submit" class="btn btn-primary me-2">
+                {{ editingAddress ? "Edit" : "Add" }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Display user addresses -->
+          <div class="address-details" *ngFor="let user of userDetails">
+            <div *ngIf="user.addressList && user.addressList.length > 0">
+              <div class="mt-4"><strong>Address Details:</strong></div>
+              <div
+                *ngFor="let address of user.addressList"
+                class="border p-3 mb-3"
+              >
+                <div class="mb-2"><strong>Name:</strong> {{ user.name }}</div>
+                <div class="mb-2">
+                  <strong>Address:</strong> {{ address.address }}
+                </div>
+                <div class="mb-2">
+                  <strong>City:</strong> {{ address.city }}
+                </div>
+                <div class="mb-2">
+                  <strong>Zipcode:</strong> {{ address.zipcode }}
+                </div>
+                <div class="d-flex justify-content-end">
+                  <button
+                    type="submit"
+                    class="btn btn-primary me-2"
+                    (click)="onEdit(address)"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    class="btn btn-danger me-2"
+                    (click)="onDelete(address.id)"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

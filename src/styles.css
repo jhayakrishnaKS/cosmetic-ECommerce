@@ -1,1 +1,248 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Exo+2&display=swap");
+
+:root {
+  --primary-50: #ffcdd2;
+  --primary-100: #ff7582;
+  --primary-300: #ff7582;
+  --primary-500: #cc184e;
+  --primary-600: #cc184e;
+  --primary-700: #cc184e;
+  --primary-900: #ffcdd2;
+  --secondary-100: #f1f5f9;
+  --secondary-500: #64748b;
+  --secondary-900: #0f172a;
+  --red-100: #fee2e2;
+  --red-300: #fca5a5;
+  --red-500: #ef4444;
+  --red-700: #b91c1c;
+  --green-300: #bef264;
+  --green-500: #84cc16;
+  --green-700: #4d7c0f;
+  --border-radius: 4px;
+}
+
+body {
+  font-family: "Exo 2", sans-serif;
+  background-color: var(--primary-50);
+}
+
+div.login,
+div.register {
+  background-image: url('https://images.unsplash.com/photo-1643123158251-3a66f53a4635?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.text-primary {
+  color: var(--primary-500) !important;
+}
+
+
+.bg-primary {
+  background-color: var(--primary-600) !important;
+}
+
+
+.btn {
+  border-radius: var(--border-radius);
+}
+
+.btn-primary {
+  color: var(--secondary-100);
+  background: var(--primary-500);
+  border: none;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  color: var(--secondary-100);
+  background: var(--primary-600) !important;
+  border: none;
+}
+
+.btn-danger {
+  color: var(--secondary-100);
+  background: var(--red-500);
+  border: none;
+}
+
+.btn-danger:hover {
+  color: var(--secondary-100);
+  background: var(--red-700);
+  border: none;
+}
+
+.btn-success {
+  color: var(--secondary-100);
+  background: var(--red-500);
+  border: none;
+}
+
+.btn-success:hover {
+  color: var(--secondary-100);
+  background: var(--red-700);
+  border: none;
+}
+
+/* form */
+.login-form-container,
+.navbar,
+.sidebar {
+  background: rgba(255, 255, 255, 0.15); 
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18); 
+  border-radius: 10px;
+  padding: 20px;
+  transition: background 0.3s ease-in-out; 
+}
+
+.login-form-container:hover,
+.navbar:hover,
+.sidebar:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.form-control,
+.form-control:focus {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25); 
+  border-width: 2px;
+  border-radius: 8px;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--primary-300);
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7); 
+}
+
+.form-control:hover::placeholder {
+  color: white; 
+}
+
+.form-label {
+  color: white;
+}
+
+/* Custom */
+.error {
+  background-color: var(--red-100);
+  margin: 8px 0px;
+  padding: 2px 6px;
+  display: block;
+  color: var(--red-700);
+  border-radius: 8px;
+  height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.border {
+  border-right-color: var(--primary-300) !important;
+}
+
+
+.bg-body-tertiary {
+  background-color: var(--primary-100) !important;
+}
+
+.sideBarItem {
+  transition: background 0.3s ease-in-out;
+ color: var(--primary-700);
+}
+
+.sideBarItem:hover {
+  background: rgba(255, 255, 255, 0.25); 
+}
+
+.fa-solid {
+  color: var(--primary-300);
+}
+
+.loader {
+  position: absolute;
+  min-height: 100vh;
+  min-width: 100vw;
+  opacity: 0.5;
+  background-color: #000;
+  z-index: 99;
+  left: 0;
+  top: 0;
+}
+
+.lottie-loader {
+  width: 150px !important;
+  height: 150px !important;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+.sharp-container {
+  border-radius: 0 !important;
+}
+
+.sidebar {
+  border-radius: 0 !important;
+}
+
+/* .sideBarActive,
+.sideBarActive > a,
+.sideBarActive > a:hover,
+.sideBarActive > a:active {
+  color: var(--primary-100) !important;
+  background-color: var(--primary-100) !important;
+  padding: 8px;
+} */
+
+.sideBarItem,
+.sideBarItem > i {
+  color: var(--primary-200);
+  padding: 8px;
+}
+
+.sideBarItem:hover > i {
+  color: var(--primary-700) !important;
+}
+
+.sideBarItem > .fa-solid:hover {
+  color: var(--primary-700) !important;
+}
+
+.sideBarActive {
+  background-color: var(--primary-500) !important;
+  color: var(--primary-100) !important;
+}
+
+.sideBarItem {
+  color: var(--primary-200);
+  padding: 8px;
+}
+
+/* .sideBarItem.active {
+  color: var(--primary-100) !important;
+  background-color: var(--primary-100) !important;
+  padding: 8px;
+} */
+.nav-link{
+  text-decoration: none;
+  color: var(--primary-500)!important;
+}
+.nav-link.active{
+  font-weight:100;
+}
+.sideBarItem.active,
+.sideBarItem.active > i {
+  color: var(--primary-100) !important;
+  background-color: var(--primary-200) !important;
+  padding: 8px;
+}
+
+

@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>My Orders</h2>
+
+  <div *ngIf="orderItems.length === 0" class="text-center">
+    <p style="color: var(--primary-700)">Your order list is empty.</p>
+    <img src="https://media0.giphy.com/media/MpaSoyuT1Tm44UJsof/giphy.gif" alt="" width="25%">
+  </div>
+
+  <div *ngFor="let order of orderItems" class="order-item">
+    <p class="order-details">
+      <span class="product-name">Order ID: {{ order.id }}</span
+      ><br />
+      <span class="order-status">Order Status: {{ order.orderStatus }}</span>
+    </p>
+
+    <div class="address-list">
+      <h3 style="color: var(--primary-700)">Address :</h3>
+      <ul>
+        {{
+          order.address.address
+        }},
+        {{
+          order.address.city
+        }},
+        {{
+          order.address.zipcode
+        }}
+      </ul>
+    </div>
+  </div>
+
+  <a routerLink="/" class="btn btn-rounded" id="back-button" >Go Back</a>
+</div>

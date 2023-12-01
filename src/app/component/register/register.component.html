@@ -1,0 +1,171 @@
+<div class="register">
+  <section class="vh-100">
+    <div class="container py-5 h-100">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <div class="col-md-6">
+          <ng-lottie [options]="options"></ng-lottie>
+        </div>
+        <div class="col-md-6">
+          <div class="login-form-container">
+            <h2 class="display-4 text-primary">Register</h2>
+            <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+              <!-- Username input -->
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  id="Name"
+                  class="form-control"
+                  name="person"
+                  [(ngModel)]="person"
+                  ngModel
+                  required
+                  minlength="3"
+                  maxlength="15"
+                  #UserNamevaild="ngModel"
+                  [ngClass]="{
+                    'is-invalid':
+                      UserNamevaild.invalid &&
+                      (UserNamevaild.dirty || UserNamevaild.touched),
+                    '':
+                      !UserNamevaild.invalid &&
+                      (UserNamevaild.dirty || UserNamevaild.touched)
+                  }"
+                  style="color: var(--red-700)"
+                />
+                <div
+                  *ngIf="
+                    UserNamevaild.invalid &&
+                    (UserNamevaild.dirty || UserNamevaild.touched)
+                  "
+                  class="invalid-feedback"
+                >
+                  Please enter the name (min 3 characters).
+                </div>
+              </div>
+
+              <!-- Name input -->
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  class="form-control"
+                  name="name"
+                  ngModel
+                  required
+                  minlength="3"
+                  maxlength="15"
+                  #Namevaild="ngModel"
+                  [(ngModel)]="nameRef"
+                  [ngClass]="{
+                    'is-invalid':
+                      Namevaild.invalid &&
+                      (Namevaild.dirty || Namevaild.touched),
+                    '':
+                      !Namevaild.invalid &&
+                      (Namevaild.dirty || Namevaild.touched)
+                  }"
+                  style="color: var(--red-700)"
+                />
+                <div
+                  *ngIf="
+                    Namevaild.invalid && (Namevaild.dirty || Namevaild.touched)
+                  "
+                  class="invalid-feedback"
+                >
+                  Please enter the name (min 3 characters).
+                </div>
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-3">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control"
+                  name="password"
+                  ngModel
+                  [(ngModel)]="password"
+                  required
+                  minlength="3"
+                  maxlength="10"
+                  #passwordvaild="ngModel"
+                  [ngClass]="{
+                    'is-invalid':
+                      passwordvaild.invalid &&
+                      (passwordvaild.dirty || passwordvaild.touched),
+                    '':
+                      !passwordvaild.invalid &&
+                      (passwordvaild.dirty || passwordvaild.touched)
+                  }"
+                  style="color: var(--red-700)"
+                />
+                <div
+                  *ngIf="
+                    passwordvaild.invalid &&
+                    (passwordvaild.dirty || passwordvaild.touched)
+                  "
+                  class="invalid-feedback"
+                >
+                  Please enter the password (min 3 characters).
+                </div>
+              </div>
+
+              <!-- Confirm Password input -->
+              <div class="mb-3">
+                <label for="confirmPassword">Confirm Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  ngModel
+                  required
+                  pattern="{{ passwordvaild.value }}"
+                  #confpass="ngModel"
+                  [ngClass]="{
+                    'is-invalid':
+                      confpass.value !== passwordvaild.value &&
+                      (confpass.dirty || confpass.touched),
+                    '':
+                      confpass.value === passwordvaild.value &&
+                      (confpass.dirty || confpass.touched)
+                  }"
+                  style="color: var(--red-700)"
+                />
+                <div
+                  *ngIf="
+                    confpass.invalid && (confpass.dirty || confpass.touched)
+                  "
+                  class="invalid-feedback"
+                >
+                  Passwords do not match.
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center mb-4">
+                <span>Already registered?</span>
+                <a
+                  routerLink="/login"
+                  class="text-primary text-decoration-none px-2"
+                  >Login here</a
+                >
+              </div>
+
+              <!-- <p class="error" [ngClass]="{ 'visible': error.length > 0, 'invisible': !error.length }">
+                {{ error }}
+              </p> -->
+
+              <!-- Submit button -->
+              <div class="d-grid gap-2 mb-5">
+                <button type="submit" class="btn btn-primary">Register</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

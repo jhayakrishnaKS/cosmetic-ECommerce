@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@0;1&display=swap');
+
+#space {
+  padding-left: 0;
+}
+.row {
+  display: block !important;
+}
+
+
+.navbar-brand {
+  flex: 1;
+  text-align: center;
+  color: #fca5a5;
+  font-family: 'Old Standard TT', serif;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.navbar-nav i {
+  margin-left: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  display: flex;
+  padding: 10px 12px;
+}
+
+.navbar-nav i:hover {
+  color: white;
+}
+
+.categories {
+  margin-right: auto;
+  margin-left: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fca5a5;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.categories span {
+  margin-right: 20px;
+}
+
+.categories span:hover {
+  color: white;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+}
+
+.container-fluid {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.row.flex-grow-1 {
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  position: fixed;
+  /* overflow: hidden; */
+}
+
+.col-10 {
+  flex: 0 0 calc(100% - 200px);
+  margin-left: 200px;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+
+.navbar {
+  padding: 5px 10px !important;
+  height: 60px !important;
+  position:fixed;
+}
+
+.navbar-brand {
+  font-size: 1.2rem !important;
+}
+
+.navbar-nav.categories {
+  font-size: 1rem !important;
+}
+
+.fa-solid {
+  font-size: 1.2rem !important;
+}
+
+footer {
+  background-color: var(--primary-700);
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  position: static;
+  bottom: 0;
+  width: 100%;
+}
+.sidebar .fa-solid{
+  color: var(--primary-700)
+}

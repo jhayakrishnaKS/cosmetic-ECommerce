@@ -1,0 +1,74 @@
+.gradient-custom {
+  background: linear-gradient(to right, #3931af, #00c6ff);
+  border-radius: 10% 50%;
+  padding: 20px;
+}
+
+.card-custom {
+  border-bottom-left-radius: 10% 50%;
+  border-top-left-radius: 10% 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-custom:hover {
+  transform: scale(1.05);
+}
+
+.input-custom {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.white-text {
+  color: var(--primary-900); 
+  font-weight: 100;
+  font-size: 14px;
+}
+
+.back-button {
+  background-color: rgba(255, 255, 255, 0.2); 
+  font-weight: 700;
+  color: var(--primary-100);
+  margin-top: 50px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.row {
+  background-image: url('https://images.unsplash.com/photo-1694023445909-8752bb171a00?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; 
+  background-color: var(--primary-600) !important;
+}
+
+.float-end button {
+  background-color: var(--primary-100);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.float-end button:hover {
+  background-color: var(--primary-200);
+}
+
+.address-details div {
+  margin-bottom: 5px;
+  color: var(--primary-700);
+  background-color: rgba(255, 255, 255, 0.2); 
+  padding: 10px;
+  border-radius: 8px; 
+  transition: transform 0.3s ease-in-out;
+}
+
+.address-details div:hover {
+  transform: scale(1.05);
+}

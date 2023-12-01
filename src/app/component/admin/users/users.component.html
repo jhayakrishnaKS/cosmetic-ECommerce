@@ -1,0 +1,48 @@
+<br><br><br>
+<div class="row">
+  <div class="col-6">
+    <p style="color: var(--primary-700);">User</p>
+    <p style="color: var(--primary-700);">Home / User</p>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr >
+          <th scope="col" >Id</th>
+          <th scope="col" >Name</th>
+          <th scope="col" >Username</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr
+          *ngFor="let user of userDetails"
+          (click)="setSelectedUser(user)"
+          [ngClass]="user.id === userDetail.id ? 'table-primary' : ''"
+        >
+          <th scope="row">{{ user.id }}</th>
+          <td>{{ user.name }}</td>
+          <td>{{ user.username }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-6"><br><br>
+    <p style="color: var(--primary-700);">Address</p>
+    <ng-container *ngIf="userDetail.addressList && userDetail.addressList.length > 0; else noAddress">
+      <div class="address-details" *ngFor="let address of userDetail.addressList">
+        <div class="mb-3" style="color: var(--primary-700);">
+          <strong>Address:</strong> {{ address.address }}
+        </div>
+        <div class="mb-3" style="color: var(--primary-700);">
+          <strong>City:</strong> {{ address.city }}
+        </div>
+        <div class="mb-3" style="color: var(--primary-700);">
+          <strong>Pincode:</strong> {{ address.zipcode }}
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noAddress>
+      <p style="color: var(--primary-700);">No address available for this user.</p>
+      <!-- <img src="https://media0.giphy.com/media/QWvyGoTShLU0XEalGW/giphy.gif?cid=6c09b9522m4afrv28ni014w1m9gl1ssufrnyaj7ps1066hqf&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s" alt=""  width="25%"> -->
+    </ng-template>
+  </div>
+</div>

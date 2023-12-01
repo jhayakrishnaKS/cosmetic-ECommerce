@@ -1,0 +1,77 @@
+<section class="bg-light my-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="card border shadow-0">
+          <div class="m-4">
+            <h4 class="card-title mb-4">Your shopping cart</h4>
+
+            <div *ngIf="cartItems.length === 0" class="text-center">
+              <img src="https://media0.giphy.com/media/MpaSoyuT1Tm44UJsof/giphy.gif" alt="" width="25%">
+
+              <p style="color: var(--primary-700)">Your cart is empty.</p>
+            </div>
+
+            <div class="row gy-3 mb-4" *ngFor="let cartItem of cartItems">
+              <!-- Item -->
+              <div class="col-lg-5">
+                <div class="me-lg-5">
+                  <div class="d-flex">
+                    <img
+            [src]="'http://localhost:8080/api/downloadFile/' + cartItem.beautyProducts.id"
+            alt="Product Photo"
+            class="product-photo" width="30%" style="border-radius: 2px!important;"
+          />
+                    <div class="">
+                      <p class="nav-link" style="color: var(--primary-700)">
+                        {{ cartItem.beautyProducts.title }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
+                <div class="d-flex flex-column">
+                  <span class="h6 mb-2" style="color: var(--primary-700)">
+                    Count: {{ cartItem.count }}
+                  </span>
+                  <span class="text-nowrap">
+                    Price:  ₹
+                    <span class="h6" style="color: var(--primary-500)">
+                      {{ cartItem.beautyProducts.price }}
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
+                <div class="float-md-end">
+                  <div
+                    class="btn btn-light border icon-hover-danger"
+                    style="color: var(--primary-900)"
+                    (click)="deleteCart(cartItem.id)"
+                  >
+                    Remove
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a
+              *ngIf="cartItems.length > 0"
+              class="btn btn-light border icon-hover-pink"
+              (click)="checkout()"
+            >
+              Checkout
+            </a>
+          </div>
+          <div class="border-top pt-4 mx-4 mb-4">
+            <p>
+              <i class="fas fa-truck text-muted fa-lg"></i> Free Delivery within
+              1-2 weeks
+            </p>
+            <p class="text-muted"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

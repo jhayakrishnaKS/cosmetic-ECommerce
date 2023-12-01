@@ -1,0 +1,63 @@
+<br><br><br><br>
+<H1 class="container-sm" style="color: var(--primary-700);">Welcome Admin!!</H1>
+<hr style="color: var(--primary-700);">
+<main class="container">
+  <div class="cards">
+    <div class="card-single" routerLink="/admin/users">
+      <h1 id="customer"></h1>
+      <span>Happy Clients</span>
+      {{ totalUsers }}
+      <span class="fas fa-users"></span>
+    </div>
+
+    <div class="card-single" routerLink="/admin/product">
+      <h1 id="project"></h1>
+      <span>Total Products!</span>
+      {{ totalProducts }}
+      <span class="fas fa-clipboard"></span>
+    </div>
+
+    <!-- <div class="card-single" routerLink="/admin/order">
+      <h1 id="order"></h1>
+      <span>Total Orders</span>
+      {{ totalOrders }}
+      <span class="fas fa-shopping-bag"></span>
+    </div> -->
+  </div>
+</main>
+<div class="d-flex">
+  <h2 class="text-center" style="color: var(--primary-700);">Orders</h2>
+</div>
+
+<div class="container mt-5" *ngIf="userOrders && userOrders.length > 0">
+  <br />
+  <br />
+  <table class="table table-bordered text-center">
+    <thead class="thead-dark">
+      <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Address</th>
+        <th>Product Details</th>
+        <th>Order Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of userOrders; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ order.name }}</td>
+        <td>{{ order.username }}</td>
+        <td>{{ order.address.address }}, {{ order.address.city }}, {{ order.address.zipcode }}</td>
+        <td *ngFor="let product of order.orderedBeautyProductList">
+          {{ product.title }} -  ₹ {{ product.price  }}
+          <br />
+        </td>
+        <td>{{order.orderStatus}}</td>
+      </tbody>
+    </table>
+  </div>
+        <div class="container mt-5 text-center mt-0" *ngIf="!userOrders || userOrders.length === 0">
+          <h4 style="color: var(--primary-700);"><strong>No orders available</strong>.</h4>
+          <!-- <img src="https://www.clipartbest.com/cliparts/acq/LKG/acqLKGAzi.gif" alt=""  width="25%"> -->
+        </div>
