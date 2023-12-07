@@ -11,8 +11,8 @@
             <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
               <!-- Username input -->
               <div class="form-group">
-                <label for="username">Username</label>
                 <input
+                  placeholder="Username"
                   type="text"
                   id="Name"
                   class="form-control"
@@ -43,11 +43,11 @@
                   Please enter the name (min 3 characters).
                 </div>
               </div>
-
+              <br />
               <!-- Name input -->
               <div class="form-group">
-                <label for="name">Name</label>
                 <input
+                  placeholder="Name"
                   type="text"
                   id="name"
                   class="form-control"
@@ -77,11 +77,11 @@
                   Please enter the name (min 3 characters).
                 </div>
               </div>
-
+              <br />
               <!-- Password input -->
               <div class="form-outline mb-3">
-                <label for="password">Password</label>
                 <input
+                  placeholder="Password"
                   type="password"
                   id="password"
                   class="form-control"
@@ -112,11 +112,11 @@
                   Please enter the password (min 3 characters).
                 </div>
               </div>
-
+              <!-- <br /> -->
               <!-- Confirm Password input -->
               <div class="mb-3">
-                <label for="confirmPassword">Confirm Password</label>
                 <input
+                  placeholder="Confirm Password"
                   type="password"
                   class="form-control"
                   id="confirmPassword"
@@ -160,7 +160,22 @@
 
               <!-- Submit button -->
               <div class="d-grid gap-2 mb-5">
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button
+                  type="submit"
+                  class="btn"
+                  [disabled]="
+                    !passwordvaild.valid ||
+                    !UserNamevaild.valid ||
+                    !Namevaild.valid
+                  "
+                  style="
+                   color: var(--primary-900);
+                    background: var(--primary-500);
+                    border: none;
+                  "
+                >
+                  Register
+                </button>
               </div>
             </form>
           </div>
@@ -169,3 +184,8 @@
     </div>
   </section>
 </div>
+<style>
+  ::placeholder {
+    color: var(--primary-700);
+  }
+</style>
