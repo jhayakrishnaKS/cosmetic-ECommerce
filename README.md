@@ -48,7 +48,8 @@ Embrace the beauty of simplicity and functionality with our E-Commerce platform.
 ![Angular16ShoppingRestApi and 1 more page - Profile 1 - Microsoft​ Edge 01-12-2023 14_49_24](https://github.com/jhayakrishnaKS/cosmetic-ECommerce/assets/145537398/476f9b36-846b-40c9-b944-5434f923d3f7)
 
 ![Angular16ShoppingRestApi and 1 more page - Profile 1 - Microsoft​ Edge 01-12-2023 14_51_53](https://github.com/jhayakrishnaKS/cosmetic-ECommerce/assets/145537398/be5a75c0-623f-41d1-b4c2-6d08414ce8a7)
-![Angular16ShoppingRestApi and 1 more page - Profile 1 - Microsoft​ Edge 01-12-2023 14_52_09](https://github.com/jhayakrishnaKS/cosmetic-ECommerce/assets/145537398/260e725a-1d31-4968-acb4-ad8edacd6167)
+
+![Angular16ShoppingRestApi - Profile 1 - Microsoft​ Edge 07-12-2023 12_37_50](https://github.com/jhayakrishnaKS/cosmetic-ECommerce/assets/145537398/30ac21ab-bed1-4212-bda0-fd68332660a2)
 
 # ➡️ Challenges
 
