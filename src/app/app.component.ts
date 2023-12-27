@@ -45,6 +45,7 @@ export class AppComponent implements OnInit {
     });
 
     this.loadCart();
+    this.updateCartItemsCount();
   }
 
   loadCart() {
@@ -70,4 +71,5 @@ export class AppComponent implements OnInit {
   isActive(route: string): boolean {
     return this.route.snapshot.url.join('/') === route;
   }
+  
 }

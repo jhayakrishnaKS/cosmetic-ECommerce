@@ -56,6 +56,8 @@
   
     .product-photo:hover {
       transform: scale(1.1);
+      opacity: 1;
+      background-color: #444444;
     }
     
     .section-products #product-2 .part-1::before {
@@ -209,3 +211,7 @@
       text-decoration: none;
       color: inherit
     }
+
+.input-group input.form-control::placeholder {
+  color: var(--primary-700);
+}

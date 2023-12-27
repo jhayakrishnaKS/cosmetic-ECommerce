@@ -1,3 +1,4 @@
+<br />
 <section class="bg-light my-5">
   <div class="container">
     <div class="row">
@@ -7,8 +8,11 @@
             <h4 class="card-title mb-4">Your shopping cart</h4>
 
             <div *ngIf="cartItems.length === 0" class="text-center">
-              <img src="https://media0.giphy.com/media/MpaSoyuT1Tm44UJsof/giphy.gif" alt="" width="25%">
-
+              <ng-lottie
+                [options]="options"
+                width="25%"
+                style="display: flex; justify-content: center"
+              ></ng-lottie>
               <p style="color: var(--primary-700)">Your cart is empty.</p>
             </div>
 
@@ -18,10 +22,15 @@
                 <div class="me-lg-5">
                   <div class="d-flex">
                     <img
-            [src]="'http://localhost:8080/api/downloadFile/' + cartItem.beautyProducts.id"
-            alt="Product Photo"
-            class="product-photo" width="30%" style="border-radius: 2px!important;"
-          />
+                      [src]="
+                        'http://localhost:8080/api/downloadFile/' +
+                        cartItem.beautyProducts.id
+                      "
+                      alt="Product Photo"
+                      class="product-photo"
+                      width="30%"
+                      style="border-radius: 2px !important"
+                    />
                     <div class="">
                       <p class="nav-link" style="color: var(--primary-700)">
                         {{ cartItem.beautyProducts.title }}
@@ -30,25 +39,44 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
+              <div
+                class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap"
+              >
                 <div class="d-flex flex-column">
                   <span class="h6 mb-2" style="color: var(--primary-700)">
-                    Count: {{ cartItem.count }}
+                    Count:
+                    <button
+                      class="btn btn-sm btn-light border icon-hover-pink"
+                      (click)="decrementCount(cartItem)"
+                    >
+                      -
+                    </button>
+                    {{ cartItem.count }}
+                    <button
+                      class="btn btn-sm btn-light border icon-hover-pink"
+                      (click)="incrementCount(cartItem)"
+                    >
+                      +
+                    </button>
                   </span>
                   <span class="text-nowrap">
-                    Price:  ₹
+                    Price: ₹
                     <span class="h6" style="color: var(--primary-500)">
                       {{ cartItem.beautyProducts.price }}
                     </span>
                   </span>
                 </div>
               </div>
-              <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
+              <div
+                class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2"
+              >
                 <div class="float-md-end">
                   <div
                     class="btn btn-light border icon-hover-danger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#confirmationModal"
                     style="color: var(--primary-900)"
-                    (click)="deleteCart(cartItem.id)"
+                    (click)="setSelectedCartId(cartItem.id!)"
                   >
                     Remove
                   </div>
@@ -63,6 +91,7 @@
               Checkout
             </a>
           </div>
+
           <div class="border-top pt-4 mx-4 mb-4">
             <p>
               <i class="fas fa-truck text-muted fa-lg"></i> Free Delivery within
@@ -75,3 +104,11 @@
     </div>
   </div>
 </section>
+
+<app-component
+[title]="'Confirmation'"
+(confirm)="deleteCart(selectedCartId!)"
+(cancel)="onCancelDelete()"
+>
+Are you sure you want to delete cart?
+</app-component>

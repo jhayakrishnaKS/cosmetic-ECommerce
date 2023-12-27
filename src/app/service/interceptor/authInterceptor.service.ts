@@ -3,15 +3,15 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
-} from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { AuthService } from "../auth.service";
-import { urlEndpoint } from "../../utils/constant";
-import { StorageService } from "../storage.service";
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
+import { urlEndpoint } from '../../utils/constant';
+import { StorageService } from '../storage.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AuthInterceptorService implements HttpInterceptor {
   constructor(
@@ -24,7 +24,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const authData = this.storageService.getAuthData();
-    const isApiUrl = !request.url.startsWith(urlEndpoint.baseUrl + "/auth");
+    const isApiUrl = !request.url.startsWith(urlEndpoint.baseUrl + '/auth');
 
     if (authData !== null && isApiUrl) {
       request = request.clone({
@@ -32,6 +32,7 @@ export class AuthInterceptorService implements HttpInterceptor {
           Authorization: `Basic ${authData}`,
         },
       });
+      console.log(request);
     }
 
     return next.handle(request);

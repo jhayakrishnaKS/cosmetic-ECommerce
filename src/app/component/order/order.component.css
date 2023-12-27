@@ -51,3 +51,23 @@
     background-color: var(--primary-100)!important;
     color: var(--primary-700);
 }
+
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  .pagination span {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 10px;
+  }
+  

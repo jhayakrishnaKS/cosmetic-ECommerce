@@ -5,6 +5,7 @@ import { BeautyProducts } from 'src/app/model/beautyProducts';
 import { Cart } from 'src/app/model/cart';
 import { ProductService } from 'src/app/service/product.service';
 import { StorageService } from 'src/app/service/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -17,11 +18,13 @@ export class ProductsComponent implements OnInit {
   statusId: number = 0;
   carts: Cart[] = [];
   beautyProduct: string = '';
+  search:string='';
 
   userProducts: BeautyProducts[] = [];
+  totalProducts:BeautyProducts[]=[]
   error: string = '';
 
-  constructor(private productService: ProductService, private storageService: StorageService) {}
+  constructor(private productService: ProductService,  private router: Router ,private storageService: StorageService) {}
 
   ngOnInit(): void {
     this.loadUserProducts();
@@ -32,6 +35,7 @@ export class ProductsComponent implements OnInit {
       (response: AppResponse) => {
         if (response && response.data) {
           this.userProducts = response.data;
+          this.totalProducts=response.data;
           console.log(this.userProducts);
         } else {
           console.error('Invalid API response format:', response);
@@ -67,12 +71,13 @@ export class ProductsComponent implements OnInit {
           price: 0,
           // photo: null,
         },
-        count: 3, 
+        count: 1, 
       };
   
       this.productService.postCart(cart).subscribe({
         next: (response: AppResponse) => {
           this.carts.push(response.data);
+          this.router.navigate(['/cart']);
           this.ngOnInit();
           this.getCartCount(id);
         },
@@ -82,13 +87,21 @@ export class ProductsComponent implements OnInit {
           this.error = message.includes(',') ? message.split(',')[0] : message;
         },
       });
-    }
+    }  
+    // window.location.reload();
+    
   }
   
   getCartCount(id: number): number {
     const cartItem = this.carts.find((cart) => cart.beautyProducts?.id === id);
     return cartItem?.count ?? 0;
   }
-  
-  
+
+  filterArray() {
+    this.userProducts = this.totalProducts.filter((e: any) => {
+      return (
+        e.title.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+      );
+    });
+  }
 }

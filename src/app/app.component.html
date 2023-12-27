@@ -75,7 +75,7 @@
               class="nav-item d-flex align-items-center px-4 sideBarItem"
               [routerLinkActive]="['active']"
             >
-              <i class="fa-solid fa-user"></i>
+              <i class="fa-solid fa-users"></i>
               <a
                 class="nav-link d-flex align-items-center"
                 routerLink="/admin/users"
@@ -120,14 +120,14 @@
         >
 
         <div class="navbar-nav text-white">
-          <i class="fa-solid fa-solid fa-shopping-cart" routerLink="/cart">
-            <span style="font-size: 0.7em; margin-top: 4px">{{cartItemsCount}}</span>
+          <i class="fa-solid fa-shopping-cart" routerLink="/cart">
+          
           </i>
 
-          <i class="fa-solid fa-solid fa-box" routerLink="/order"></i>
-          <i class="fa-solid fa-solid fa-user" routerLink="/user-details"></i>
+          <i class="fa-solid  fa-box" routerLink="/order"></i>
+          <i class="fa-solid fa-user" routerLink="/user-details"></i>
           <i
-            class="fa-solid fa-solid fa-sign-out"
+            class="fa-solid fa-sign-out"
             (click)="logout()"
             role="button"
           ></i>
@@ -147,3 +147,4 @@
   </div>
 </div>
 <style></style>
+<!-- <span style="font-size: 0.7em; margin-top: 4px">{{cartItemsCount}}</span> -->

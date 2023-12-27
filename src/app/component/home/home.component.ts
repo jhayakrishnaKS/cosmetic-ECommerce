@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppResponse } from 'src/app/model/appResponse';
 import { AppUser } from 'src/app/model/appUser';
 import { BeautyProducts } from 'src/app/model/beautyProducts';
 import { Cart } from 'src/app/model/cart';
 import { CartService } from 'src/app/service/cart.service';
-import { HomeService } from 'src/app/service/home.service';
 import { ProductService } from 'src/app/service/product.service';
 import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  styleUrls:['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   userId: number = 0;
@@ -26,7 +27,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private storageService: StorageService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router 
   ) {}
 
   ngOnInit() {
@@ -36,8 +38,8 @@ export class HomeComponent implements OnInit {
   updateCartItemsCount() {
     this.cartItemsCount = this.cartItems.length;
     console.log(this.cartItemsCount);
-    
   }
+  
   loadUserProducts() {
     this.productService.getUserProducts().subscribe(
       (response: AppResponse) => {
@@ -87,6 +89,7 @@ export class HomeComponent implements OnInit {
           this.cartItems.push(response.data);
           this.updateCartItemsCount();
           this.getCartCount(id);
+          this.router.navigate(['/cart']);
         },
         error: (err) => {
           console.error('Error adding item to cart:', err);
@@ -94,7 +97,9 @@ export class HomeComponent implements OnInit {
           this.error = message.includes(',') ? message.split(',')[0] : message;
         },
       });
+     
     }
+    // window.location.reload();
   }
   
 

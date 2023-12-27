@@ -4,7 +4,7 @@ import { AppResponse } from "../model/appResponse";
 import { urlEndpoint } from "../utils/constant";
 import { Observable, Observer } from "rxjs";
 import { StorageService } from "./storage.service";
-import { AddAddress, Address } from "../model/address";
+import {  Address } from "../model/address";
 
 @Injectable({
   providedIn: "root",
@@ -20,11 +20,12 @@ export class UserService {
     const userId = this.storageService.getLoggedInUser().id;
     return this.http.get<AppResponse>(`${urlEndpoint.baseUrl}/user/${userId}`);
   }
-  postUsersAddress(address: AddAddress): Observable<AppResponse> {
+
+  postUsersAddress(address: Address): Observable<AppResponse> {
     return this.http.post<AppResponse>(`${urlEndpoint.baseUrl}/user/address`, address);
   }
   
-  putUserAddress(address: AddAddress): Observable<AppResponse> {
+  putUserAddress(address: Address): Observable<AppResponse> {
     return this.http.put<AppResponse>(`${urlEndpoint.baseUrl}/user/address`, address);
   }
   
@@ -32,8 +33,5 @@ export class UserService {
   deleteUsersAddress(id: number): Observable<AppResponse> {
     return this.http.delete<AppResponse>(`${urlEndpoint.baseUrl}/user/address/${id}`);
   }
-  
-  
-  
   
 }

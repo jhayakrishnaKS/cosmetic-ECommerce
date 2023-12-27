@@ -1,17 +1,19 @@
 <br /><br /><br /><br />
-<h1 class="container-sm d-flex justify-content-center align-items-center flex-column" style="color: var(--primary-700)">Welcome Admin!!</h1>
+
+
+<h1 class="container-sm d-flex justify-content-center align-items-center flex-column" style="color: var(--primary-700); font-family: 'Times New Roman';">Welcome Admin!!</h1>
 <hr style="color: var(--primary-700)" />
 <main class="container">
   <div class="cards d-flex justify-content-center">
     <div class="card-single" routerLink="/admin/users">
       <h1 id="customer" class="fas fa-users"></h1>
-      <span>Happy Clients</span>
-      <h2>{{ totalUsers }}</h2>
+      <span Style="font-family: 'Times New Roman';">Happy Clients</span>
+      <h2>{{ totalUsers}}</h2>
     </div>
 
     <div class="card-single" routerLink="/admin/product">
       <h1 id="project" class="fas fa-clipboard"></h1>
-      <span>Total Products!</span>
+      <span Style="font-family: 'Times New Roman';">Total Products!</span>
       <h2>{{ totalProducts }}</h2>
     </div>
   </div>
@@ -19,9 +21,10 @@
 <br />
 <br>
 
+
 <div class="">
-  <h2 style="color: var(--primary-700)">Orders</h2>
-  <hr style="color: var(--primary-700); margin-bottom: 0; padding: 0%;"/>
+  <h2 style="color: var(--primary-700); font-family: 'Times New Roman';">Orders</h2>
+  <hr style="color: var(--primary-700); margin-bottom: 0; padding: 0%;"/><br><br>
   <div class="container" *ngIf="userOrders && userOrders.length > 0">
     <table class="table table-bordered text-center">
       <thead class="thead-dark">
@@ -34,30 +37,40 @@
           <th>Order Status</th>
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor="let order of userOrders; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ order.name }}</td>
-          <td>{{ order.username }}</td>
-          <td>
-            {{ order.address.address }}, {{ order.address.city }},
-            {{ order.address.zipcode }}
-          </td>
-          <td *ngFor="let product of order.orderedBeautyProductList">
-            {{ product.title }} - ₹ {{ product.price }}
-            <br />
-          </td>
-          <td>{{ order.orderStatus }}</td>
-        </tr>
-      </tbody>
+    <!-- Inside the table body -->
+<tbody>
+  <tr *ngFor="let order of userOrders; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ order.name }}</td>
+    <td>{{ order.username }}</td>
+    <td  *ngFor="let a of order.addressList">
+      {{ a.address }}, {{ a.city }},
+      {{ a.zipcode }}
+    </td>
+    <td *ngIf="order.orderedBeautyProductList.length === 1">
+      {{ order.orderedBeautyProductList[0].title }} - ₹ {{ order.orderedBeautyProductList[0].price }}
+    </td>
+    <td *ngIf="order.orderedBeautyProductList.length > 1">
+      <span *ngFor="let product of order.orderedBeautyProductList; let last = last">
+        {{ product.title }} - ₹ {{ product.price }}
+        <br *ngIf="!last" />
+      </span>
+    </td>
+    <td>{{ order.orderStatus }}</td>
+  </tr>
+</tbody>
+
+      
     </table>
   </div>
+  <br><br><br>
 
   <div
     class="container mt-5 text-center mt-0"
     *ngIf="!userOrders || userOrders.length === 0"
   >
     <h4 style="color: var(--primary-700)">
+      <ng-lottie [options]="options" width="25%" style="display: flex;justify-content: center;"></ng-lottie>
       <strong>No orders available</strong>.
     </h4>
   </div>

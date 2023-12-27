@@ -24,7 +24,7 @@ export class ProductService {
     return this.http.post<AppResponse>(`${this.apiUrl}/BeautyProduct`,productData);
   }
   
-  putProducts(beautyProduct: BeautyProducts): Observable<AppResponse> {
+  putProducts(beautyProduct: FormData): Observable<AppResponse> {
     return this.http.put<AppResponse>(`${this.apiUrl}/BeautyProduct`, beautyProduct);
   }
   

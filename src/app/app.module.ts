@@ -19,12 +19,12 @@ import { OrderComponent } from './component/order/order.component';
 import { UserDetailsComponent } from './component/user-details/user-details.component';
 import { ProductsComponent } from './component/products/products.component';
 import { CategoryComponent } from './component/category/category.component';
-// import { DashboardComponent } from './component/admin/dashboard/dashboard.component';
 import { ProductComponent } from './component/admin/product/product.component';
 import { UsersComponent } from './component/admin/users/users.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
 import { AdminCategoryComponent } from './component/admin/acategory/acategory.component';
 import { AdminHomeComponent } from './component/admin/home/home.component';
+import { ComponentComponent } from './confirmation-modal/component/component.component';
 
 
 export function playerFactory() {
@@ -48,6 +48,7 @@ export function playerFactory() {
         UsersComponent,
         AdminOrdersComponent,
         AdminCategoryComponent,
+        ComponentComponent,
   ],
   imports: [
     BrowserModule,

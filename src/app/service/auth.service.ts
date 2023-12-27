@@ -13,6 +13,9 @@ import { Register } from "../model/register";
   providedIn: "root",
 })
 export class AuthService {
+  getAllUsers() {
+    return this.http.get<AppResponse>(`http://localhost:8080/api/auth/allusers`);
+  }
   private isAdminSubject = new BehaviorSubject<boolean>(false);
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
 

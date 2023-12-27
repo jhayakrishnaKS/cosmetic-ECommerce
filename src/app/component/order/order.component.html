@@ -1,33 +1,58 @@
+<br /><br />
+
 <div class="container">
-  <h2>My Orders</h2>
+  <h2 style="color: var(--primary-700)">My Orders</h2>
 
   <div *ngIf="orderItems.length === 0" class="text-center">
     <p style="color: var(--primary-700)">Your order list is empty.</p>
-    <img src="https://media0.giphy.com/media/MpaSoyuT1Tm44UJsof/giphy.gif" alt="" width="25%">
+    <ng-lottie [options]="options" width="25%" style="display: flex;justify-content: center;"></ng-lottie>
   </div>
 
-  <div *ngFor="let order of orderItems" class="order-item">
-    <p class="order-details">
-      <span class="product-name">Order ID: {{ order.id }}</span
-      ><br />
-      <span class="order-status">Order Status: {{ order.orderStatus }}</span>
-    </p>
+  <div *ngFor="let order of pagedOrderItems" class="order-item">
+    <div class="order-details">
+      <h3 style="color: var(--primary-700)">Order ID: {{ order.id }}</h3>
+      <p class="order-status">
+        <strong>Status: {{ order.orderStatus }}</strong>
+      </p>
+      <p class="delivery-address" *ngFor="let a of order.addressList">
+       <strong style="color: var(--primary-700)"> Address:</strong> {{ a.address }}, {{ a.city }},
+        {{ a.zipcode }}
+      </p>
+    </div>
 
-    <div class="address-list">
-      <h3 style="color: var(--primary-700)">Address :</h3>
+    <div class="ordered-products">
+      <h3 style="color: var(--primary-700)">Ordered Products:</h3>
       <ul>
-        {{
-          order.address.address
-        }},
-        {{
-          order.address.city
-        }},
-        {{
-          order.address.zipcode
-        }}
+        <li *ngFor="let product of order.orderedBeautyProductList">
+          {{ product.title }} - ₹{{ product.price }}
+        </li>
       </ul>
     </div>
   </div>
 
-  <a routerLink="/" class="btn btn-rounded" id="back-button" >Go Back</a>
+  <div *ngIf="orderItems.length!= 0" class="text-center">
+    <div class="pagination">
+      <button
+        class="btn btn-primary"
+        (click)="prevPage()"
+        [disabled]="currentPage === 1"
+        id="back-button"
+      >
+        Previous
+      </button>
+      <span>{{ currentPage }} / {{ totalPages }}</span>
+      <button
+        class="btn btn-primary"
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
+        id="back-button"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+
+  <a routerLink="/" class="btn btn-primary btn-rounded" id="back-button"
+    >Go Back</a
+  >
 </div>

@@ -43,22 +43,22 @@ const routes: Routes = [
   {
     path: 'admin/category',
     component: AdminCategoryComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
   {
     path: 'admin/product',
     component: ProductComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
   {
     path: 'admin/users',
     component: UsersComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
   {
     path: 'admin/order',
     component: AdminOrdersComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
 ];
 

@@ -3,11 +3,7 @@ export interface Address {
   address: string;
   city: string;
   zipcode:   number;
+  userId?: number; 
 }
-export interface AddAddress {
-  id: number,
-  userId?: number,
-  address: string,
-  city: string,
-  zipcode: number,
-}
+
+

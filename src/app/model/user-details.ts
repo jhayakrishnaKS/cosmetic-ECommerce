@@ -1,4 +1,4 @@
-import { AddAddress, Address } from './address';
+import {  Address } from './address';
 
 export interface UserDetail {
   id: number,
@@ -6,5 +6,5 @@ export interface UserDetail {
   name: string,
   roles: string,
   joinedAt: string,
-  addressList:AddAddress[],
+  addressList:Address[],
 }
