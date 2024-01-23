@@ -14,28 +14,32 @@ export class OrderService {
     private http: HttpClient,
     private storageService: StorageService
   ) {}
-  //admin
+
+  // Admin section
+  // Get all orders for admin
   getUserOrders(): Observable<AppResponse> {
     return this.http.get<AppResponse>(
       `http://localhost:8080/api/admin/order/all`
     );
   }
 
+  // Get all order statuses for admin
   getAllOrderStatus(): Observable<AppResponse> {
     return this.http.get<AppResponse>(
       `http://localhost:8080/api/admin/order/status/all`
     );
   }
+
+  // Update order status for admin
   putOrderStatus(orderStatusData: OrderStatus): Observable<AppResponse> {
     return this.http.put<AppResponse>(
       `http://localhost:8080/api/admin/order/status`,
       orderStatusData
     );
   }
-  
-  
 
-  //user
+  // User section
+  // Get orders for a specific user
   getOrders(): Observable<AppResponse> {
     const userId = this.storageService.getLoggedInUser().id;
     return this.http.get<AppResponse>(
@@ -43,7 +47,8 @@ export class OrderService {
     );
   }
 
-  postOrder(address:any): Observable<AppResponse> {
-    return this.http.post<AppResponse>(`http://localhost:8080/api/order`,address);
+  // Place a new order
+  postOrder(address: any): Observable<AppResponse> {
+    return this.http.post<AppResponse>(`http://localhost:8080/api/order`, address);
   }
 }

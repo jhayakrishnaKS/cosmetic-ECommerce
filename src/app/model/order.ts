@@ -7,6 +7,7 @@ export interface Order {
   name: string;
   username: string;
   addressList: Address[]; 
+  address:Address;
   beautyProduct: BeautyProducts;
   orderStatus: number;
   orderedBeautyProductList: BeautyProducts[];

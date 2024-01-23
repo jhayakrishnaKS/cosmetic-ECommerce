@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppResponse } from 'src/app/model/appResponse';
 import { Category } from 'src/app/model/category';
 import { CategoryService } from 'src/app/service/category.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-category',
@@ -21,8 +23,10 @@ export class AdminCategoryComponent implements OnInit {
   // Variable to store the category name for user input
   categoryName: string = '';
 
+  selectedCategoryId: number | null = null;
+
   // Constructor with injected CategoryService
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService, private toastr:ToastrService,   private router: Router) {}
 
   // Lifecycle hook 
   ngOnInit(): void {
@@ -103,6 +107,11 @@ export class AdminCategoryComponent implements OnInit {
         next: (response: any) => {
           // Update the categories array with the new data after deletion
           this.categories = response.data;
+          this.toastr.success('category deleted Successfully', '', {
+            toastClass: 'custom-toast',
+            // positionClass: 'toast-top-center',
+          });
+          
         },
         error: (err) => {
           // Log an error if there is an issue with the API call
@@ -122,5 +131,13 @@ export class AdminCategoryComponent implements OnInit {
   // Function to close the category form (reset the categoryModel)
   close() {
     this.categoryModel = { ...this.INITIAL_CATEGORY };
+  }
+  // Cancel category item deletion
+  onCancelDelete() {
+    this.router.navigate(['/admin/category'], { replaceUrl: true });
+  }
+  setSelectedCategoryId(categoryId:number){
+    this.selectedCategoryId=categoryId;
+    
   }
 }

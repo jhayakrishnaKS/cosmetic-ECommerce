@@ -1,3 +1,4 @@
+<!-- Shopping Cart Section -->
 <br />
 <section class="bg-light my-5">
   <div class="container">
@@ -7,6 +8,7 @@
           <div class="m-4">
             <h4 class="card-title mb-4">Your shopping cart</h4>
 
+            <!-- Empty Cart Message -->
             <div *ngIf="cartItems.length === 0" class="text-center">
               <ng-lottie
                 [options]="options"
@@ -16,11 +18,13 @@
               <p style="color: var(--primary-700)">Your cart is empty.</p>
             </div>
 
+            <!-- Display Cart Items -->
             <div class="row gy-3 mb-4" *ngFor="let cartItem of cartItems">
               <!-- Item -->
               <div class="col-lg-5">
                 <div class="me-lg-5">
                   <div class="d-flex">
+                    <!-- Product Photo -->
                     <img
                       [src]="
                         'http://localhost:8080/api/downloadFile/' +
@@ -31,6 +35,7 @@
                       width="30%"
                       style="border-radius: 2px !important"
                     />
+                    <!-- Product Title -->
                     <div class="">
                       <p class="nav-link" style="color: var(--primary-700)">
                         {{ cartItem.beautyProducts.title }}
@@ -39,10 +44,12 @@
                   </div>
                 </div>
               </div>
+              <!-- Count and Price -->
               <div
                 class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap"
               >
                 <div class="d-flex flex-column">
+                  <!-- Count -->
                   <span class="h6 mb-2" style="color: var(--primary-700)">
                     Count:
                     <button
@@ -59,14 +66,20 @@
                       +
                     </button>
                   </span>
+                  <!-- Price -->
                   <span class="text-nowrap">
                     Price: ₹
                     <span class="h6" style="color: var(--primary-500)">
-                      {{ cartItem.beautyProducts.price }}
+                      {{
+                        (cartItem?.beautyProducts?.price || 0) *
+                          (cartItem?.count || 0)
+                      }}
                     </span>
                   </span>
                 </div>
               </div>
+
+              <!-- Remove Button -->
               <div
                 class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2"
               >
@@ -83,6 +96,13 @@
                 </div>
               </div>
             </div>
+
+            <!-- Checkout Button -->
+
+            <!-- total price -->
+            <div class="text-end" *ngIf="cartItems.length !== 0">
+              <h5>Total Price: ₹{{ calculateTotalPrice() }}</h5>
+            </div>
             <a
               *ngIf="cartItems.length > 0"
               class="btn btn-light border icon-hover-pink"
@@ -92,6 +112,7 @@
             </a>
           </div>
 
+          <!-- Delivery Information -->
           <div class="border-top pt-4 mx-4 mb-4">
             <p>
               <i class="fas fa-truck text-muted fa-lg"></i> Free Delivery within
@@ -105,10 +126,11 @@
   </div>
 </section>
 
+<!-- Confirmation Modal Component -->
 <app-component
-[title]="'Confirmation'"
-(confirm)="deleteCart(selectedCartId!)"
-(cancel)="onCancelDelete()"
+  [title]="'Confirmation'"
+  (confirm)="deleteCart(selectedCartId!)"
+  (cancel)="onCancelDelete()"
 >
-Are you sure you want to delete cart?
+  Are you sure you want to delete cart?
 </app-component>

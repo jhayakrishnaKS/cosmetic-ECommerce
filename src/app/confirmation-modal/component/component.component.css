@@ -1,3 +1,23 @@
 .modal {
-    background: rgba(0, 0, 0, 0.5); 
-  }
+  background: rgba(255, 255, 255, 0.15); 
+  backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.125); 
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  background: transparent; 
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.modal-content:hover {
+  background: rgba(255, 255, 255, 0.15);
+}

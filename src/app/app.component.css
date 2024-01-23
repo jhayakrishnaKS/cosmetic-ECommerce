@@ -84,7 +84,7 @@ body {
 
 .col-10 {
   flex: 0 0 calc(100% - 200px);
-  margin-left: 200px;
+  margin-left: 100px;
 }
 
 .main-content {
@@ -96,6 +96,7 @@ body {
   padding: 5px 10px !important;
   height: 60px !important;
   position:fixed;
+  
 }
 
 .navbar-brand {
@@ -121,4 +122,60 @@ footer {
 }
 .sidebar .fa-solid{
   color: var(--primary-700)
+}
+
+
+/* Add a hover effect to navigation links */
+/* .navbar-nav.categories a:hover {
+  font-weight: 300;
+  color: var(--primary-700) !important;
+  transition: background-color 0.3s, color 0.3s;
+} */
+
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 0px; 
+}
+
+.icon-name {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  margin-top: 0px; 
+}
+
+.icon-container:hover .icon-name {
+  opacity: 1;
+}
+
+.cat{
+  font-size: 17px!important;
+  font-family: 'Old Standard TT', serif!important;
+  font-weight: 80;
+}
+#cat{
+  font-size: 17px!important;
+  font-family: 'Old Standard TT', serif!important;
+  font-weight: 80;
+}
+.icon-container {
+  display: inline-block;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.icon-container:hover .mat-icon {
+  color: #ffffff!important; 
+}
+
+.icon-container:hover .icon-name {
+  color: #ffffff; /* Change the color as needed */
+}
+
+.icon-container mat-icon {
+  margin-right: 5px;
+  color:var(--primary-100)!important;
 }

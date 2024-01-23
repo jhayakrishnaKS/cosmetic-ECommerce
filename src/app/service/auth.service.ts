@@ -13,12 +13,13 @@ import { Register } from "../model/register";
   providedIn: "root",
 })
 export class AuthService {
-  getAllUsers() {
-    return this.http.get<AppResponse>(`http://localhost:8080/api/auth/allusers`);
-  }
+  // Observable to track the admin status
   private isAdminSubject = new BehaviorSubject<boolean>(false);
+
+  // Observable to track the login status
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
 
+  // Expose isAdmin and isLoggedIn as public observables
   isAdmin$: Observable<boolean> = this.isAdminSubject.asObservable();
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
@@ -27,16 +28,24 @@ export class AuthService {
     private http: HttpClient,
     private storageService: StorageService
   ) {
+    // Check if a user is already logged in during service initialization
     if (storageService.getLoggedInUser().id != null) {
       this.setLoggedIn(storageService.getLoggedInUser());
     }
   }
 
+  // Get all users
+  getAllUsers() {
+    return this.http.get<AppResponse>(`http://localhost:8080/api/auth/allusers`);
+  }
+
+  // Login user
   login(login: Login): Observable<AppResponse> {
     return this.http
       .post<AppResponse>(`${urlEndpoint.baseUrl}/auth/login`, login)
       .pipe(
         map((user) => {
+          // Set authentication data in storage
           this.storageService.setAuthData(
             window.btoa(login.username + ":" + login.password)
           );
@@ -45,23 +54,27 @@ export class AuthService {
       );
   }
 
+  // Logout user
   logout() {
     this.storageService.removeAuthData();
     this.isAdminSubject.next(false);
     this.isLoggedInSubject.next(false);
     this.storageService.removeLoggedInUser();
     this.storageService.removeRoute();
-    this.router.navigate(["/login"], { replaceUrl: true });
+    this.router.navigate(["/k-cosmetics"], { replaceUrl: true });   
   }
 
+  // Check if the user is an admin
   isAdmin(): boolean {
     return this.isAdminSubject.value;
   }
 
+  // Check if the user is logged in
   isLoggedIn(): boolean {
     return this.isLoggedInSubject.value;
   }
 
+  // Set the user as logged in
   setLoggedIn(user: AppUser): void {
     this.storageService.setLoggedInUser(user);
     this.isLoggedInSubject.next(true);
@@ -76,7 +89,12 @@ export class AuthService {
       this.router.navigate(["/" + route], { replaceUrl: true });
     }
   }
-  register(newregister: Register) : Observable<AppResponse> {
-    return this.http.post<AppResponse>(`${urlEndpoint.baseUrl}/auth/register`,newregister);
+
+  // Register new user
+  register(newregister: Register): Observable<AppResponse> {
+    return this.http.post<AppResponse>(
+      `${urlEndpoint.baseUrl}/auth/register`,
+      newregister
+    );
   }
 }

@@ -56,7 +56,7 @@ input[type="number"] {
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-  background-color: var(--primary-600) !important;
+  background-color: var(--primary-100) !important;
 }
 
 .float-end button {

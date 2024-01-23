@@ -2,34 +2,39 @@
   <div class="login">
     <section class="vh-100">
       <div class="container py-5 h-100">
+        <!-- Row for centering content vertically -->
         <div class="row d-flex align-items-center justify-content-center h-100">
+          <!-- Left column with logo or animation -->
           <div class="col-md-6">
             <ng-lottie [options]="options"></ng-lottie>
           </div>
+          <!-- Right column with login form -->
           <div class="col-md-6">
+            <!-- Container for login form -->
             <div class="login-form-container">
+              <!-- Login form title -->
               <h2 class="display-4 text-primary">Login</h2>
+              <!-- Actual login form with ngSubmit handling -->
               <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-                <!-- Username input -->
+                <!-- Username input field -->
                 <div class="form-group">
                   <input
-                  placeholder="Username"
+                    placeholder="Username"
                     type="text"
                     class="form-control"
                     name="username"
+                    appNameValidator
                     [(ngModel)]="username"
                     required
                     #modelusername="ngModel"
-                    [ngClass]="{
-                      'is-invalid':
-                        modelusername.invalid &&
-                        (modelusername.dirty || modelusername.touched),
-                      'is-valid':
-                        !modelusername.invalid &&
-                        (modelusername.dirty || modelusername.touched)
-                    }"
-                    style="color: var(--red-700)"
-                  />
+                    
+                    [ngClass]="
+                    modelusername.invalid && modelusername.dirty || modelusername.errors?.['validName']? 'is-invalid' : ''
+                  "
+                  style="color: var(--red-700)" />
+
+                  
+                  <!-- Validation feedback for username
                   <div
                     *ngIf="
                       modelusername.invalid &&
@@ -38,20 +43,19 @@
                     class="invalid-feedback"
                   >
                     Please enter your username.
-                  </div>
+                  </div> -->
                   <div
-                    *ngIf="
-                      !modelusername.invalid &&
-                      (modelusername.dirty || modelusername.touched)
-                    "
-                    class="valid-feedback"
-                  ></div>
+                    class="error"
+                    *ngIf="modelusername.invalid && modelusername.dirty || modelusername.errors?.['validName']"
+                  >
+                    Please enter a valid user name
+                  </div>
                 </div>
-<br>
-                <!-- Password input -->
+                <br />
+                <!-- Password input field -->
                 <div class="form-group">
                   <input
-                  placeholder="Password"
+                    placeholder="Password"
                     type="password"
                     class="form-control"
                     name="password"
@@ -68,6 +72,7 @@
                     }"
                     style="color: var(--red-700)"
                   />
+                  <!-- Validation feedback for password -->
                   <div
                     *ngIf="
                       modelPassword.invalid &&
@@ -77,16 +82,8 @@
                   >
                     Please enter your password.
                   </div>
-                  <div
-                    *ngIf="
-                      !modelPassword.invalid &&
-                      (modelPassword.dirty || modelPassword.touched)
-                    "
-                    class="valid-feedback"
-                  ></div>
-                  
                 </div>
-
+                <!-- Error message display -->
                 <p
                   class="error"
                   [ngClass]="{
@@ -96,7 +93,7 @@
                 >
                   {{ error }}
                 </p>
-
+                <!-- Link to register if not registered -->
                 <div class="d-flex align-items-center mb-4">
                   <span>Not registered?</span>
                   <a
@@ -105,10 +102,20 @@
                     >Register here</a
                   >
                 </div>
-
-                <!-- Submit button -->
+                <!-- Submit button with ng-disabled -->
                 <div class="d-grid gap-2">
-                  <button type="submit" class="btn" [disabled] = "(!modelPassword.valid || !modelusername.valid)" style="  background: var(--primary-500);color: var(--primary-900);  border: none;">Login</button>
+                  <button
+                    type="submit"
+                    class="btn"
+                    [disabled]="!modelPassword.valid || !modelusername.valid"
+                    style="
+                      background: var(--primary-500);
+                      color: var(--primary-900);
+                      border: none;
+                    "
+                  >
+                    Login
+                  </button>
                 </div>
               </form>
             </div>

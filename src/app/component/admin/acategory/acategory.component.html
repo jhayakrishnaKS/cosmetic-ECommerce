@@ -1,7 +1,8 @@
+<!-- Header Section -->
 <br><br>
-
 <div class="d-flex justify-content-between align-items-center mt mt-5">
   <h1 Style="font-family: 'Times New Roman';">Category :</h1>
+  <!-- Button to trigger modal for adding category -->
   <button
     type="button"
     class="btn btn-success text-black"
@@ -9,7 +10,6 @@
     data-bs-toggle="modal"
     data-bs-target="#categoryModal"
     data-bs-whatever="@mdo"
-   
   >
     + Add Category
   </button>
@@ -23,10 +23,12 @@
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
+  <!-- Modal Dialog -->
   <div class="modal-dialog">
     <div class="modal-content">
+      <!-- Modal Header -->
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Category</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Category</h1>
         <button
           type="button"
           class="btn-close"
@@ -34,14 +36,16 @@
           aria-label="Close"
         ></button>
       </div>
+      <!-- Modal Body with form -->
       <div class="modal-body">
-        <!-- your-component.component.html -->
-
+        <!-- Form for adding/editing category -->
         <form #addCategoryForm="ngForm" (ngSubmit)="onSubmit(addCategoryForm)">
+          <!-- Input for Category title -->
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label"
-              >Category title</label
+              >Category title <span class="text-danger">*</span></label
             >
+            <!-- Input field with validation classes -->
             <input
               type="text"
               class="form-control"
@@ -56,6 +60,7 @@
               }"
               style="color: var(--primary-700)"
             />
+            <!-- Validation feedback messages -->
             <div
               *ngIf="title.invalid && (title.dirty || title.touched)"
               class="invalid-feedback"
@@ -67,6 +72,7 @@
               class="valid-feedback"
             ></div>
           </div>
+          <!-- Modal Footer with buttons -->
           <div class="modal-footer">
             <button
               type="button"
@@ -76,7 +82,7 @@
               Close
             </button>
             <button type="submit" class="btn btn-danger text-dark">
-              {{ categoryModel.id ? "Edit" : "Add" }}
+              {{ categoryModel.id ? "Save" : "Add" }}
             </button>
           </div>
         </form>
@@ -85,10 +91,13 @@
   </div>
 </div>
 
+<!-- Display Section -->
 <div class="container mt-5">
   <br />
   <br />
+  <!-- Table to display categories -->
   <table class="table table-bordered text-center">
+    <!-- Table Header -->
     <thead class="thead-dark">
       <tr class="table-danger">
         <th>S.No</th>
@@ -97,10 +106,13 @@
         <th>Delete</th>
       </tr>
     </thead>
+    <!-- Table Body with categories -->
     <tbody>
+      <!-- Loop through categories and display in rows -->
       <tr *ngFor="let category of categories; let i = index">
         <td>{{ i + 1 }}</td>
         <td>{{ category.title }}</td>
+        <!-- Edit button -->
         <td>
           <button
             class="btn btn-outline-dark btn-sm"
@@ -112,10 +124,13 @@
             <i class="fas fa-pencil-alt"></i> Edit
           </button>
         </td>
+        <!-- Delete button -->
         <td>
           <button
             class="btn btn-outline-danger btn-sm"
-            (click)="onDelete(category.id)"
+            data-bs-toggle="modal"
+            data-bs-target="#confirmationModal"
+            (click)="setSelectedCategoryId(category.id!)"
           >
             <i class="fas fa-trash-alt"></i> Delete
           </button>
@@ -124,3 +139,12 @@
     </tbody>
   </table>
 </div>
+
+<!-- Confirmation Modal for deleting category -->
+<app-component
+  [title]="'Confirmation'"
+  (confirm)="onDelete(selectedCategoryId!)"
+  (cancel)="onCancelDelete()"
+>
+  Are you sure you want to delete category?
+</app-component>

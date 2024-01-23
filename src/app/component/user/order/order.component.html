@@ -1,28 +1,35 @@
+<!-- Orders Section -->
 <br /><br />
-
 <div class="container">
+  <!-- Title -->
   <h2 style="color: var(--primary-700)">My Orders</h2>
 
+  <!-- Empty Order List Message -->
   <div *ngIf="orderItems.length === 0" class="text-center">
     <p style="color: var(--primary-700)">Your order list is empty.</p>
     <ng-lottie [options]="options" width="25%" style="display: flex;justify-content: center;"></ng-lottie>
   </div>
 
+  <!-- Loop through Paged Order Items -->
   <div *ngFor="let order of pagedOrderItems" class="order-item">
+    <!-- Order Details Section -->
     <div class="order-details">
       <h3 style="color: var(--primary-700)">Order ID: {{ order.id }}</h3>
       <p class="order-status">
         <strong>Status: {{ order.orderStatus }}</strong>
       </p>
-      <p class="delivery-address" *ngFor="let a of order.addressList">
-       <strong style="color: var(--primary-700)"> Address:</strong> {{ a.address }}, {{ a.city }},
-        {{ a.zipcode }}
+      <!-- Display Delivery Address -->
+      <p class="delivery-address" >
+        <strong style="color: var(--primary-700)"> Address:</strong> {{ order.address.address }}, {{ order.address.city }},
+        {{ order.address.zipcode }}
       </p>
     </div>
 
+    <!-- Ordered Products Section -->
     <div class="ordered-products">
       <h3 style="color: var(--primary-700)">Ordered Products:</h3>
       <ul>
+        <!-- Display Ordered Products List -->
         <li *ngFor="let product of order.orderedBeautyProductList">
           {{ product.title }} - ₹{{ product.price }}
         </li>
@@ -30,8 +37,10 @@
     </div>
   </div>
 
+  <!-- Pagination Section -->
   <div *ngIf="orderItems.length!= 0" class="text-center">
     <div class="pagination">
+      <!-- Previous Page Button -->
       <button
         class="btn btn-primary"
         (click)="prevPage()"
@@ -41,6 +50,7 @@
         Previous
       </button>
       <span>{{ currentPage }} / {{ totalPages }}</span>
+      <!-- Next Page Button -->
       <button
         class="btn btn-primary"
         (click)="nextPage()"
@@ -52,7 +62,13 @@
     </div>
   </div>
 
-  <a routerLink="/" class="btn btn-primary btn-rounded" id="back-button"
-    >Go Back</a
-  >
+  <!-- Go Back Button -->
+  <a routerLink="/" class="btn btn-primary btn-rounded" id="back-button">Go Back</a>
 </div>
+
+
+<!-- <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+</mat-paginator> -->

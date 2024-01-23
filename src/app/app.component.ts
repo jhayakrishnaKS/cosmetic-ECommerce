@@ -12,12 +12,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  // Active item in the navigation
   activeItem: string = 'Dashboard';
- 
 
+  // Error message
   error: string = '';
+
+  // Cart related properties
   cartItems: Cart[] = [];
-  cartItemsCount: number = 0; 
+  cartItemsCount: number = 0;
+
+  // Animation options for loader
   options: AnimationOptions = {
     path: '/assets/loading.json',
     rendererSettings: {
@@ -25,6 +30,7 @@ export class AppComponent implements OnInit {
     },
   };
 
+  // User role flags
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
   isUser: boolean = false;
@@ -32,44 +38,58 @@ export class AppComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public loaderService: LoaderService,
-    private cartService: CartService,private route:ActivatedRoute
+    private cartService: CartService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    // Subscribe to isAdmin observable
     this.authService.isAdmin$.subscribe((isAdmin) => {
       this.isAdmin = isAdmin;
     });
 
+    // Subscribe to isLoggedIn observable
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
 
-    this.loadCart();
-    this.updateCartItemsCount();
+    this.cartItemsCount
+
+    // Load user's cart and update cart count
+    // this.loadCart();
+    // this.updateCartItemsCount();
   }
 
+  // Load user's cart
   loadCart() {
     this.cartService.getCart().subscribe({
       next: (response: any) => {
         this.cartItems = response.data;
-        this.updateCartItemsCount(); 
+        this.updateCartItemsCount();
       },
       error: (err) => {
         let message: string = err?.error?.error?.message;
+        // Extract the first part of the error message
         this.error = message.includes(',') ? message.split(',')[0] : message;
       },
     });
   }
 
+  // Update cart items count
   updateCartItemsCount() {
-    this.cartItemsCount = this.cartItems.length; 
+    // this.loadCart();
+    this.cartItemsCount = this.cartItems.length;
   }
 
+  // Logout the user
   logout(): void {
     this.authService.logout();
   }
+
+  // Check if a route is currently active
   isActive(route: string): boolean {
     return this.route.snapshot.url.join('/') === route;
   }
-  
+
+
 }

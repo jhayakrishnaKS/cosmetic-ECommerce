@@ -1,16 +1,19 @@
+<!-- Welcome Admin Section -->
 <br /><br /><br /><br />
-
-
 <h1 class="container-sm d-flex justify-content-center align-items-center flex-column" style="color: var(--primary-700); font-family: 'Times New Roman';">Welcome Admin!!</h1>
 <hr style="color: var(--primary-700)" />
+
+<!-- Main Content Section -->
 <main class="container">
+  <!-- Cards Section for Admin Metrics -->
   <div class="cards d-flex justify-content-center">
+    <!-- Card for Total Users -->
     <div class="card-single" routerLink="/admin/users">
       <h1 id="customer" class="fas fa-users"></h1>
       <span Style="font-family: 'Times New Roman';">Happy Clients</span>
       <h2>{{ totalUsers}}</h2>
     </div>
-
+    <!-- Card for Total Products -->
     <div class="card-single" routerLink="/admin/product">
       <h1 id="project" class="fas fa-clipboard"></h1>
       <span Style="font-family: 'Times New Roman';">Total Products!</span>
@@ -19,17 +22,19 @@
   </div>
 </main>
 <br />
-<br>
+<br />
 
-
-<div class="">
+<!-- Orders Section -->
+<div class="justify-content-end">
   <h2 style="color: var(--primary-700); font-family: 'Times New Roman';">Orders</h2>
-  <hr style="color: var(--primary-700); margin-bottom: 0; padding: 0%;"/><br><br>
-  <div class="container" *ngIf="userOrders && userOrders.length > 0">
+
+  <!-- Table for displaying user orders -->
+  <div class="" *ngIf="userOrders && userOrders.length > 0">
     <table class="table table-bordered text-center">
+      <!-- Table Header -->
       <thead class="thead-dark">
         <tr>
-          <th>S.No</th>
+          <th>Order ID</th>
           <th>Name</th>
           <th>Username</th>
           <th>Address</th>
@@ -37,40 +42,38 @@
           <th>Order Status</th>
         </tr>
       </thead>
-    <!-- Inside the table body -->
-<tbody>
-  <tr *ngFor="let order of userOrders; let i = index">
-    <td>{{ i + 1 }}</td>
-    <td>{{ order.name }}</td>
-    <td>{{ order.username }}</td>
-    <td  *ngFor="let a of order.addressList">
-      {{ a.address }}, {{ a.city }},
-      {{ a.zipcode }}
-    </td>
-    <td *ngIf="order.orderedBeautyProductList.length === 1">
-      {{ order.orderedBeautyProductList[0].title }} - ₹ {{ order.orderedBeautyProductList[0].price }}
-    </td>
-    <td *ngIf="order.orderedBeautyProductList.length > 1">
-      <span *ngFor="let product of order.orderedBeautyProductList; let last = last">
-        {{ product.title }} - ₹ {{ product.price }}
-        <br *ngIf="!last" />
-      </span>
-    </td>
-    <td>{{ order.orderStatus }}</td>
-  </tr>
-</tbody>
-
-      
+      <!-- Table Body -->
+      <tbody>
+        <!-- Loop through user orders and display in rows -->
+        <tr *ngFor="let order of userOrders; let i = index">
+          <td>{{ order.id }}</td>
+          <td>{{ order.name }}</td>
+          <td>{{ order.username }}</td>
+          <!-- Loop through address list for each order -->
+          <td>
+            {{ order.address.address}}, {{ order.address.city }}, {{ order.address.zipcode }}
+          </td>
+          <!-- Display ordered beauty products with price -->
+          <td *ngIf="order.orderedBeautyProductList.length === 1">
+            {{ order.orderedBeautyProductList[0].title }} - ₹ {{ order.orderedBeautyProductList[0].price }}
+          </td>
+          <td *ngIf="order.orderedBeautyProductList.length > 1">
+            <!-- Loop through multiple products -->
+            <span *ngFor="let product of order.orderedBeautyProductList; let last = last">
+              {{ product.title }} - ₹ {{ product.price }}
+              <br *ngIf="!last" />
+            </span>
+          </td>
+          <td>{{ order.orderStatus }}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
+  <!-- Message for no orders available -->
   <br><br><br>
-
-  <div
-    class="container mt-5 text-center mt-0"
-    *ngIf="!userOrders || userOrders.length === 0"
-  >
+  <div class="container mt-5 text-center mt-0" *ngIf="!userOrders || userOrders.length === 0">
     <h4 style="color: var(--primary-700)">
-      <ng-lottie [options]="options" width="25%" style="display: flex;justify-content: center;"></ng-lottie>
+      <!-- <ng-lottie [options]="options" width="25%" style="display: flex;justify-content: center;"></ng-lottie> -->
       <strong>No orders available</strong>.
     </h4>
   </div>

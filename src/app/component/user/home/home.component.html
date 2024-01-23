@@ -1,0 +1,301 @@
+<!-- Carousel Section -->
+<br /><br />
+<div
+  id="carouselExampleSlidesOnly"
+  class="carousel slide"
+  data-bs-ride="carousel"
+  data-bs-interval="1600"
+>
+  <!-- Carousel Items -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="../../../assets/carousel4.jpg"
+        class="d-block w-100"
+        alt="Image 1"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="../../../assets/carousel6.jpg"
+        class="d-block w-100"
+        alt="Image 2"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="../../../assets/carousel7.jpg"
+        class="d-block w-100"
+        alt="Image 3"
+      />
+    </div>
+  </div>
+
+  <!-- Navigation controls -->
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleSlidesOnly"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleSlidesOnly"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Products Section -->
+<div class="section-products container">
+  <!-- Search input and Header -->
+  <div class="header">
+    <!-- Header Title -->
+    <h2>{{ flag ? "Products" : "Popular Products" }}</h2>
+
+    <!-- Search input -->
+    <div *ngIf="flag !== false" class="input-group custom-search">
+      <input
+        class="form-control mx-3 rounded mt-5"
+        type="search"
+        placeholder=" Search product By Name"
+        aria-label="Search"
+        [(ngModel)]="search"
+        (ngModelChange)="filterArray()"
+        style="color: var(--primary-700)"
+      />
+      <div
+        *ngIf="userProducts.length === 0 && search"
+        class="d-flex justify-content-center m-0"
+      >
+        No results found.
+      </div>
+    </div>
+    <br />
+
+    <!-- Price filter-->
+    <!-- <div *ngIf="flag !== false" class="filter-options">
+      <label for="priceRange">Filter by Price:</label>
+      <select
+        id="priceRange"
+        name="priceRange"
+        (change)="filterByPriceRange($event)"
+      >
+        <option value="100-399">₹100 - ₹399</option>
+        <option value="400-599">₹400 - ₹599</option>
+        <option value="600-999">₹600 - ₹999</option>
+      </select>
+      <button type="button" class="btn btn-small" (click)="resetFilter()">Reset</button>
+    </div> -->
+
+    <div
+      *ngIf="flag !== false && userProducts.length !== 0"
+      class="d-flex justify-content-between align-items-center price-sort-section"
+    >
+      <!-- Price filter -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#priceRangeModal"
+      >
+        Filter price
+      </button>
+      <!-- Category filter -->
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="categoryFilterDropdown"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >Select the category
+        </button>
+        <div class="dropdown-menu" aria-labelledby="categoryFilterDropdown">
+          <a
+            class="dropdown-item"
+            *ngFor="let category of categories"
+            (click)="applyCategoryFilter(category.id)"
+
+          >
+            {{ category.title }}
+          </a>
+        </div>
+      </div>
+      
+
+      <!-- The modal -->
+      <div
+        class="modal fade"
+        id="priceRangeModal"
+        tabindex="-1"
+        aria-labelledby="priceRangeModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="priceRangeModalLabel">Price Range</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <h6 class="mat-h3">Price range:</h6>
+                </div>
+                <div class="col-md-6">
+                  <mat-slider min="0" max="999" discrete="true" color="accent">
+                    <input matSliderStartThumb [(ngModel)]="minPrice" />
+                    <input matSliderEndThumb [(ngModel)]="maxPrice" />
+                  </mat-slider>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-primary" (click)="resetFilter()">
+                    Reset
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                (click)="applyFilter()"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price sort button -->
+    <div *ngIf="flag === true && userProducts.length !== 0">
+      <div class="text-end mt-2">
+        <div class="btn-group">
+          <button
+            class="btn btn-primary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Sort
+          </button>
+          <div class="dropdown-menu">
+            <button class="dropdown-item" (click)="sortProductsLowToHigh()">
+              Low to High
+            </button>
+            <button class="dropdown-item" (click)="sortProductsHighToLow()">
+              High to Low
+            </button>
+            <button class="dropdown-item" (click)="sortProductsAToZ()">
+              A to Z
+            </button>
+            <button class="dropdown-item" (click)="sortProductsZToA()">
+              Z to A
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Display -->
+  <div class="row">
+    <!-- Single Product -->
+    <div
+      *ngFor="let product of userProducts; let i = index"
+      class="col-md-6 col-lg-4 col-xl-3"
+    >
+      <!-- Content for Popular Products -->
+      <div
+        [id]="'product-' + product.id"
+        class="single-product"
+        *ngIf="i < 4 && flag === false"
+      >
+        <!-- Part 1: Product Image and Description -->
+        <div class="part-1">
+          <img
+            [src]="'http://localhost:8080/api/downloadFile/' + product.id"
+            alt="Product Photo"
+            class="product-photo"
+          />
+          <ul>
+            <li>
+              <h3 class="product-description">{{ product.description }}</h3>
+            </li>
+            <li>
+              <button class="btn" (click)="addToCart(product.id)">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+            </li>
+          </ul>
+        </div>
+        <!-- Part 2: Product Title, Price, and Old Price -->
+        <div class="part-2">
+          <h3 class="product-title">{{ product.title }}</h3>
+          <h4 class="product-price">{{ "₹" + product.price }}</h4>
+          <h4 class="product-old-price">
+            {{ " ₹" + (product!.price ? product!.price * 1.5 + 0.5 : 0) }}
+          </h4>
+        </div>
+      </div>
+
+      <!-- Content for Total Products -->
+      <div
+        [id]="'product-' + product.id"
+        class="single-product"
+        *ngIf="flag === true"
+      >
+        <!-- Part 1: Product Image and Description -->
+        <div class="part-1">
+          <img
+            [src]="'http://localhost:8080/api/downloadFile/' + product.id"
+            alt="Product Photo"
+            class="product-photo"
+          />
+          <ul>
+            <li>
+              <h3 class="product-description">{{ product.description }}</h3>
+            </li>
+            <li>
+              <button class="btn" (click)="addToCart(product.id)">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+            </li>
+          </ul>
+        </div>
+        <!-- Part 2: Product Title, Price, and Old Price -->
+        <div class="part-2">
+          <h3 class="product-title">{{ product.title }}</h3>
+          <h4 class="product-price">{{ "₹" + product.price }}</h4>
+          <h4 class="product-old-price">
+            {{ " ₹" + (product!.price ? product!.price * 1.5 + 0.5 : 0) }}
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load More Button -->
+  <div class="text-center mt-4" *ngIf="flag !== true">
+    <button class="btn btn-primary" (click)="loadMoreProducts(true)">
+      Load More Products
+    </button>
+  </div>
+</div>

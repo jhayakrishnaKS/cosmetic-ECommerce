@@ -10,17 +10,14 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const storedRoute = storageService.getCurrentRoute();
 
+  if (!loginService.isLoggedIn()) {
+    // Redirect to '/k-cosmetics' if not logged in
+    router.navigate(['/k-cosmetics'], { replaceUrl: true });
+  }
+
   storageService.setRoute(
     route.routeConfig?.path !== undefined ? route.routeConfig.path : null
   );
-
-  if (!loginService.isLoggedIn()) {
-    if (storedRoute) {
-      router.navigate([storedRoute], { replaceUrl: true });
-    } else {
-      router.navigate(["/login"], { replaceUrl: true });
-    }
-  }
 
   return loginService.isLoggedIn();
 };

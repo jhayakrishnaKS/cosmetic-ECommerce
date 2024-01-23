@@ -1,6 +1,7 @@
-<br><br>
-
+<!-- Welcome and Go Back Section -->
+<br /><br />
 <div class="row mt-3 mx-3" style="margin-top: 25px">
+  <!-- Welcome Section -->
   <div class="col-md-3">
     <div class="text-center" style="margin-top: 50px; margin-left: 10px">
       <i
@@ -11,31 +12,50 @@
         data-mdb-animation-start="onScroll"
         data-mdb-animation-on-scroll="repeat"
       ></i>
-      <ng-lottie [options]="options" width="25%" style="display: flex;justify-content: center;"></ng-lottie>
+      <ng-lottie
+        [options]="options"
+        width="25%"
+        style="display: flex; justify-content: center"
+      ></ng-lottie>
       <h3 class="mt-3" style="color: var(--primary-700)">Welcome User!!!</h3>
     </div>
+    <!-- Go Back Button -->
     <div class="text-center">
       <a href="" type="submit" class="btn btn-primary btn-rounded back-button"
         >Go Back</a
       >
     </div>
   </div>
+
+  <!-- Delivery Details Section -->
   <div class="col-md-9 justify-content-center">
     <div class="card card-custom pb-4">
       <div class="card-body mt-0 mx-5">
         <div class="text-center mb-3 pb-2 mt-3">
           <h4 style="color: #495057">Delivery Details</h4>
         </div>
+
         <!-- Form for adding a new address -->
         <form #addressForm="ngForm" (ngSubmit)="onSubmit(addressForm)">
-          <div class="row mb-4" *ngIf="!(userDetails && userDetails[0]?.addressList && userDetails[0]?.addressList!.length > 0)">
-            <div class="col">
+          <!-- Address Input Fields -->
+          <div
+            class="row mb-4"
+            *ngIf="
+              !(
+                userDetails &&
+                userDetails[0]?.addressList &&
+                (userDetails[0]?.addressList)!.length > 0
+              )
+            "
+          >
+            <!-- Address -->
+            <div class="row">
               <div class="form-outline mb-3">
                 <label
                   class="form-label"
                   for="form9Example6"
                   style="color: var(--primary-700)"
-                  >Address</label
+                  >Address <span class="text-danger">*</span></label
                 >
                 <input
                   type="text"
@@ -66,13 +86,15 @@
                 </div>
               </div>
             </div>
-            <div class="col">
+
+            <!-- City -->
+            <div class="row">
               <div class="form-outline mb-3">
                 <label
                   class="form-label"
                   for="form9Example3"
                   style="color: var(--primary-700)"
-                  >City</label
+                  >City <span class="text-danger">*</span></label
                 >
                 <input
                   type="text"
@@ -102,9 +124,16 @@
                 </div>
               </div>
             </div>
-            <div class="col">
+
+            <!-- ZipCode -->
+            <div class="row">
               <div class="form-outline mb-3">
-                <label class="form-label" for="form9Example4" style="color: var(--primary-700)">ZipCode</label>
+                <label
+                  class="form-label"
+                  for="form9Example4"
+                  style="color: var(--primary-700)"
+                  >ZipCode <span class="text-danger">*</span></label
+                >
                 <input
                   type="number"
                   id="form9Example4"
@@ -112,23 +141,29 @@
                   [(ngModel)]="addressModel.zipcode"
                   name="zipcode"
                   required
-                  pattern="\d{6}" 
+                  pattern="\d{6}"
                   #modelZipcode="ngModel"
                   [ngClass]="{
-                    'is-invalid': modelZipcode.invalid && (modelZipcode.dirty || modelZipcode.touched),
-                    'is-valid': !modelZipcode.invalid && (modelZipcode.dirty || modelZipcode.touched)
+                    'is-invalid':
+                      modelZipcode.invalid &&
+                      (modelZipcode.dirty || modelZipcode.touched),
+                    'is-valid':
+                      !modelZipcode.invalid &&
+                      (modelZipcode.dirty || modelZipcode.touched)
                   }"
-                  style="color: var(--primary-700)"/>
+                  style="color: var(--primary-700)"
+                />
                 <div *ngIf="modelZipcode.invalid && (modelZipcode.dirty || modelZipcode.touched)" class="text-danger">
                   ZipCode is required and must be 6 digits.
                 </div>
+                
               </div>
             </div>
-            
 
+            <!-- Submit Button -->
             <div class="float-end">
               <button type="submit" class="btn btn-primary me-2">
-                {{ editingAddress ? "Edit" : "Add" }}
+                {{ editingAddress ? 'Add' : 'save' }}
               </button>
             </div>
           </div>
@@ -136,6 +171,7 @@
           <!-- Display user addresses -->
           <div class="address-details" *ngFor="let user of userDetails">
             <div *ngIf="user.addressList && user.addressList.length > 0">
+              <!-- Display Address Details -->
               <div class="mt-4"><strong>Address Details:</strong></div>
               <div
                 *ngFor="let address of user.addressList"
@@ -151,6 +187,7 @@
                 <div class="mb-2">
                   <strong>Zipcode:</strong> {{ address.zipcode }}
                 </div>
+                <!-- Edit and Delete Buttons -->
                 <div class="d-flex justify-content-end">
                   <button
                     type="submit"
@@ -177,11 +214,12 @@
     </div>
   </div>
 </div>
-<app-component
-[title]="'Confirmation'"
-(confirm)="onDelete(selectedAddressId!)"
-(cancel)="onCancelDelete()"
->
-Are you sure you want to delete address?
-</app-component>
 
+<!-- Confirmation Modal -->
+<app-component
+  [title]="'Confirmation'"
+  (confirm)="onDelete(selectedAddressId!)"
+  (cancel)="onCancelDelete()"
+>
+  Are you sure you want to delete address?
+</app-component>

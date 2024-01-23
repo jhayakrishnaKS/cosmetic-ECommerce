@@ -27,12 +27,12 @@
           />
           <ul>
             <li>
-              <h3 class="product-description" style="font-size: small; color: white; margin-bottom: 70%">
+              <h3 class="product-description" >
                 {{ product.description }}
               </h3>
             </li>
             <li>
-              <button class="btn" (click)="addToCart(product.id)">
+              <button class="btn" routerLink="/login">
                 <i class="fas fa-shopping-cart"></i> Add to Cart
               </button>
             </li>
@@ -42,7 +42,7 @@
         <div class="part-2">
           <h3 class="product-title">{{ product.title }}</h3>
           <h4 class="product-price">{{ "₹" + product.price }}</h4>
-          <h4 class="product-old-price">₹1000</h4>
+          <h4 class="product-old-price">{{ " ₹" + (product!.price ? product!.price * 1.5+0.5 : 0) }}</h4>
         </div>
       </div>
     </div>

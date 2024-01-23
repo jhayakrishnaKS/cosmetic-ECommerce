@@ -20,21 +20,12 @@ export class AdminHomeComponent implements OnInit {
   // Variables to store total users, products, and orders
   totalUsers: number = 0;
   totalProducts: number = 0;
-  totalOrders: number = 0;
+
 
   // Array to store user orders
   userOrders: Order[] = [];
 
-  // Variable to store the selected user details
-  selectedUser: UserDetail = {
-    id: 0,
-    username: '',
-    name: '',
-    roles: '',
-    joinedAt: '',
-    addressList: [],
-  };
-
+  
   constructor(
     private userService: UserService,
     private productService: ProductService,
@@ -56,9 +47,6 @@ export class AdminHomeComponent implements OnInit {
     // Fetch total products and update the totalProducts variable
     this.loadTotalProducts();
 
-    // Fetch total orders and update the totalOrders variable
-    this.loadTotalOrders();
-
     // Fetch user orders
     this.fetchUserOrders();
   }
@@ -76,19 +64,7 @@ export class AdminHomeComponent implements OnInit {
     });
   }
 
-  // Function to load total orders from the OrderService
-  loadTotalOrders() {
-    this.orderService.getAllOrderStatus().subscribe({
-      next: (response: any) => {
-        let orders: Order[] = response.data;
-        this.totalOrders = orders.length - 2;
-        console.log(orders.length);
-      },
-      error: (err) => {
-        console.error('Error loading total orders:', err);
-      },
-    });
-  }
+ 
 
   // Function to fetch user orders from the OrderService
   fetchUserOrders() {
@@ -107,10 +83,5 @@ export class AdminHomeComponent implements OnInit {
         console.log('An error occurred while fetching user orders:', err);
       },
     });
-  }
-
-  // Function to set the selected user details
-  setSelectedUser(userDetail: UserDetail): void {
-    this.selectedUser = userDetail;
   }
 }

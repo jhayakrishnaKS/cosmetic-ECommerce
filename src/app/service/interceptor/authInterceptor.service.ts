@@ -32,7 +32,7 @@ export class AuthInterceptorService implements HttpInterceptor {
           Authorization: `Basic ${authData}`,
         },
       });
-      console.log(request);
+      // console.log(request);
     }
 
     return next.handle(request);

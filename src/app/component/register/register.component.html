@@ -1,15 +1,22 @@
+<!-- Main container for the registration form -->
 <div class="register">
   <section class="vh-100">
     <div class="container py-5 h-100">
+      <!-- Row for centering content vertically -->
       <div class="row d-flex align-items-center justify-content-center h-100">
+        <!-- Left column with logo or animation -->
         <div class="col-md-6">
           <ng-lottie [options]="options"></ng-lottie>
         </div>
+        <!-- Right column with registration form -->
         <div class="col-md-6">
+          <!-- Container for the registration form -->
           <div class="login-form-container">
+            <!-- Registration form title -->
             <h2 class="display-4 text-primary">Register</h2>
+            <!-- Actual registration form with ngSubmit handling -->
             <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
-              <!-- Username input -->
+              <!-- Username input field -->
               <div class="form-group">
                 <input
                   placeholder="Username"
@@ -20,31 +27,31 @@
                   [(ngModel)]="person"
                   ngModel
                   required
+                  appInputvalidator
                   minlength="3"
                   maxlength="15"
-                  #UserNamevaild="ngModel"
+                  #UsernameValid="ngModel"
                   [ngClass]="{
                     'is-invalid':
-                      UserNamevaild.invalid &&
-                      (UserNamevaild.dirty || UserNamevaild.touched),
-                    '':
-                      !UserNamevaild.invalid &&
-                      (UserNamevaild.dirty || UserNamevaild.touched)
+                      UsernameValid.invalid &&
+                      (UsernameValid.dirty || UsernameValid.touched),
+                    '': !UsernameValid.invalid && (UsernameValid.dirty || UsernameValid.touched)
                   }"
                   style="color: var(--red-700)"
                 />
+                <!-- Validation feedback for username -->
                 <div
                   *ngIf="
-                    UserNamevaild.invalid &&
-                    (UserNamevaild.dirty || UserNamevaild.touched)
+                    UsernameValid.invalid &&
+                    (UsernameValid.dirty || UsernameValid.touched)
                   "
                   class="invalid-feedback"
                 >
-                  Please enter the name (min 3 characters).
+                  Please enter the username (min 3 characters).
                 </div>
               </div>
               <br />
-              <!-- Name input -->
+              <!-- Name input field -->
               <div class="form-group">
                 <input
                   placeholder="Name"
@@ -62,12 +69,11 @@
                     'is-invalid':
                       Namevaild.invalid &&
                       (Namevaild.dirty || Namevaild.touched),
-                    '':
-                      !Namevaild.invalid &&
-                      (Namevaild.dirty || Namevaild.touched)
+                    '': !Namevaild.invalid && (Namevaild.dirty || Namevaild.touched)
                   }"
                   style="color: var(--red-700)"
                 />
+                <!-- Validation feedback for name -->
                 <div
                   *ngIf="
                     Namevaild.invalid && (Namevaild.dirty || Namevaild.touched)
@@ -78,7 +84,7 @@
                 </div>
               </div>
               <br />
-              <!-- Password input -->
+              <!-- Password input field -->
               <div class="form-outline mb-3">
                 <input
                   placeholder="Password"
@@ -96,12 +102,11 @@
                     'is-invalid':
                       passwordvaild.invalid &&
                       (passwordvaild.dirty || passwordvaild.touched),
-                    '':
-                      !passwordvaild.invalid &&
-                      (passwordvaild.dirty || passwordvaild.touched)
+                    '': !passwordvaild.invalid && (passwordvaild.dirty || passwordvaild.touched)
                   }"
                   style="color: var(--red-700)"
                 />
+                <!-- Validation feedback for password -->
                 <div
                   *ngIf="
                     passwordvaild.invalid &&
@@ -112,8 +117,7 @@
                   Please enter the password (min 3 characters).
                 </div>
               </div>
-              <!-- <br /> -->
-              <!-- Confirm Password input -->
+              <!-- Confirm Password input field -->
               <div class="mb-3">
                 <input
                   placeholder="Confirm Password"
@@ -129,12 +133,11 @@
                     'is-invalid':
                       confpass.value !== passwordvaild.value &&
                       (confpass.dirty || confpass.touched),
-                    '':
-                      confpass.value === passwordvaild.value &&
-                      (confpass.dirty || confpass.touched)
+                    '': confpass.value === passwordvaild.value && (confpass.dirty || confpass.touched)
                   }"
                   style="color: var(--red-700)"
                 />
+                <!-- Validation feedback for confirm password -->
                 <div
                   *ngIf="
                     confpass.invalid && (confpass.dirty || confpass.touched)
@@ -144,36 +147,28 @@
                   Passwords do not match.
                 </div>
               </div>
+              <!-- Error message display -->
               <div *ngIf="userError.length > 0" class="text-danger">
                 {{ userError }}
               </div>
-
+              <!-- Already registered link -->
               <div class="d-flex align-items-center mb-4">
                 <span>Already registered?</span>
                 <a
                   routerLink="/login"
                   class="text-primary text-decoration-none px-2"
-                  >Login here</a
-                >
+                >Login here</a>
               </div>
+              <!-- Submit button with ng-disabled -->
               <div class="d-grid gap-2 mb-5">
                 <button
                   type="submit"
                   class="btn"
-                  [disabled]="
-                    !passwordvaild.valid ||
-                    !UserNamevaild.valid ||
-                    !Namevaild.valid
-                  "
-                  style="
-                    color: var(--primary-900);
-                    background: var(--primary-500);
-                    border: none;
-                  "
+                  [disabled]="!passwordvaild.valid || !UsernameValid.valid || !Namevaild.valid"
+                  style="color: var(--primary-900); background: var(--primary-500); border: none;"
                 >
                   Register
                 </button>
-                
               </div>
             </form>
           </div>
@@ -182,7 +177,6 @@
     </div>
   </section>
 </div>
-
 
 
 <style>

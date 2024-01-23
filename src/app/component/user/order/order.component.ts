@@ -7,6 +7,7 @@ import { StorageService } from 'src/app/service/storage.service';
 import { UserDetail } from 'src/app/model/user-details';
 import { AppUser } from 'src/app/model/appUser';
 import { AnimationOptions } from 'ngx-lottie';
+import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
   selector: 'app-order',
@@ -14,17 +15,31 @@ import { AnimationOptions } from 'ngx-lottie';
   styleUrls: ['./order.component.css'],
 })
 export class OrderComponent implements OnInit {
+  // Animation options for the order component
   options: AnimationOptions = {
-    path: "/assets/empty.json",
+    path: '/assets/empty.json',
   };
+
+  // Error message to display in case of API call failure
   error: string = '';
+
+  // Array to store all order items
   orderItems: Order[] = [];
-  appUser: AppUser[] = [];
-  currentPage = 1;
-  itemsPerPage = 1; 
+
+  // Array to store user details
+  userDetails: UserDetail[] = [];
+
+  // Array to store paged order items for pagination
   pagedOrderItems: Order[] = [];
+
+  // Current page number for pagination
+  currentPage = 1;
+
+  // Items per page for pagination
+  itemsPerPage = 1;
+
+  // Total number of pages for pagination
   totalPages = 0;
-  userDetails: UserDetail[] = [];  
 
   constructor(
     private orderService: OrderService,
@@ -33,13 +48,21 @@ export class OrderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadUserDetails();  // Call loadUserDetails here
+    // Call loadUserDetails here to fetch user details
+    this.loadUserDetails();
+
+    // Fetch orders from the OrderService
     this.orderService.getOrders().subscribe(
       (response: AppResponse) => {
         if (response && response.data) {
           this.orderItems = response.data;
 
-          this.totalPages = Math.ceil(this.orderItems.length / this.itemsPerPage);
+          // Calculate total pages for pagination
+          this.totalPages = Math.ceil(
+            this.orderItems.length / this.itemsPerPage
+          );
+
+          // Update pagedOrderItems based on the current page
           this.updatePagedOrderItems();
         } else {
           console.error('Invalid API response format:', response);
@@ -54,7 +77,10 @@ export class OrderComponent implements OnInit {
   // Function to update pagedOrderItems based on currentPage
   updatePagedOrderItems() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    this.pagedOrderItems = this.orderItems.slice(startIndex, startIndex + this.itemsPerPage);
+    this.pagedOrderItems = this.orderItems.slice(
+      startIndex,
+      startIndex + this.itemsPerPage
+    );
   }
 
   // Function to handle "Next" button click
@@ -93,5 +119,4 @@ export class OrderComponent implements OnInit {
       }
     );
   }
-  
 }

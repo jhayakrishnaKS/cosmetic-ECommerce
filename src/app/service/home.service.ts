@@ -12,6 +12,7 @@ export class HomeService {
 
   constructor(private http: HttpClient) {}
 
+  // Get all beauty products
   getAllBeautyProduct(): void {
     console.log('called');
 
@@ -27,10 +28,12 @@ export class HomeService {
     });
   }
 
+  // Get the currently selected product
   getSelectedProduct(): any {
     return this.selectedProduct;
   }
 
+  // Set the selected product
   setSelectedProduct(product: any): void {
     this.selectedProduct = product;
   }

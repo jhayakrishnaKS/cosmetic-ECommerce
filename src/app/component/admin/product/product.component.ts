@@ -5,6 +5,7 @@ import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 import { BeautyProducts } from 'src/app/model/beautyProducts';
 import { Category } from 'src/app/model/category';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product',
@@ -16,7 +17,7 @@ export class ProductComponent implements OnInit {
   products: BeautyProducts[] = [];
   categories: Category[] = [];
   pagedProducts: BeautyProducts[] = [];
-  button:String="";
+  button: String = '';
 
   // Variable to store the selected file for product photo
   file = '';
@@ -40,10 +41,11 @@ export class ProductComponent implements OnInit {
   // Constructor with injected services (ProductService, CategoryService)
   constructor(
     private productService: ProductService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private toastr: ToastrService
   ) {}
 
-  // Lifecycle hook 
+  // Lifecycle hook
   ngOnInit(): void {
     // Load products, categories, and update paged products
     this.loadProducts();
@@ -61,11 +63,10 @@ export class ProductComponent implements OnInit {
       categoryId: 1,
       photo: '',
     };
-    this.button = "Add";
+    this.button = 'Add';
     console.log('After reset:', this.productModel.id);
   }
-  
-  
+
   // Function to load products from the ProductService
   loadProducts() {
     this.productService.getProducts().subscribe({
@@ -81,7 +82,6 @@ export class ProductComponent implements OnInit {
         }
       },
       error: (err) => {
-        // Log an error if there is an issue with the API call
         console.log('An error occurred:', err);
       },
       complete: () => console.log('There are no more actions happening.'),
@@ -126,7 +126,7 @@ export class ProductComponent implements OnInit {
       // Create FormData object for handling file upload
       const formData = new FormData();
 
-      formData.append('photo', this.file);
+      formData.append('image', this.file);
       formData.append('id', productForm.value.id);
       formData.append('categoryId', productForm.value.categoryId);
       formData.append('title', productForm.value.title);
@@ -135,13 +135,12 @@ export class ProductComponent implements OnInit {
       formData.append('brand', productForm.value.brand);
 
       // Check if it's a new product or an update
-      if (this.productModel.id === 0) 
-      {
+      if (this.productModel.id === 0) {
         // Add a new product
         this.productService.postProducts(formData).subscribe({
           next: (response: any) => {
             if (response && response.data) {
-              // Update products array, reset form, and update paged products
+              // Update products array and update paged products
               this.products = response.data;
               this.productModel = {
                 id: 0,
@@ -152,7 +151,6 @@ export class ProductComponent implements OnInit {
                 categoryId: 1,
                 photo: '',
               };
-              productForm.resetForm();
               this.updatePagedProducts();
             }
           },
@@ -172,7 +170,6 @@ export class ProductComponent implements OnInit {
           next: (response: any) => {
             if (response && response.data) {
               this.products = response.data;
-              this.categories = response.data;
               this.productModel = {
                 id: 0,
                 title: '',
@@ -182,7 +179,6 @@ export class ProductComponent implements OnInit {
                 categoryId: 1,
                 photo: '',
               };
-              productForm.resetForm();
               this.updatePagedProducts();
             } else {
               // Log an error if the API response format is invalid
@@ -207,6 +203,10 @@ export class ProductComponent implements OnInit {
             // Update products array and update paged products
             this.products = response.data;
             this.updatePagedProducts();
+            this.toastr.success('category deleted Successfully', '', {
+              toastClass: 'custom-toast',
+              // positionClass: 'toast-top-center',
+            });
           }
         },
         error: (err) => {
@@ -221,9 +221,8 @@ export class ProductComponent implements OnInit {
   onEdit(product: BeautyProducts) {
     // Find the edited product in the products array
     const editedProduct = this.products.find((p) => p.id === product.id);
-    this.button="Edit";
-    this.close();
-  
+    this.button = 'Save';
+
     // If the product is found, update the product model
     if (editedProduct) {
       // Remove photo and category from the product model
@@ -236,7 +235,22 @@ export class ProductComponent implements OnInit {
   close() {
     this.productModel = { ...this.productModel };
   }
- 
+
+  // Function to get the total number of pages for pagination
+  getTotalPages(): number {
+    // Calculate and return the total number of pages based on itemsPerPage and the total number of products
+    return Math.ceil(this.products.length / this.itemsPerPage);
+  }
+
+  // Function to get an array of page numbers for pagination
+  getPageNumbers(): number[] {
+    // Calculate the total number of pages
+    const totalPages = this.getTotalPages();
+
+    // Generate an array of page numbers from 1 to total pages
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
   // Function to update the pagedProducts array based on pagination
   updatePagedProducts() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
@@ -246,31 +260,29 @@ export class ProductComponent implements OnInit {
 
   // Function to change the current page based on offset
   changePage(offset: number): void {
+    // Increment or decrement the current page by the specified offset
     this.currentPage += offset;
+
+    // Ensure that the current page is within the valid range (1 to total pages)
     if (this.currentPage < 1) {
       this.currentPage = 1;
     } else if (this.currentPage > this.getTotalPages()) {
       this.currentPage = this.getTotalPages();
     }
+
+    // Update the products displayed on the current page
     this.updatePagedProducts();
   }
 
   // Function to go to a specific page
   goToPage(page: number): void {
+    // Check if the specified page is within the valid range (1 to total pages)
     if (page >= 1 && page <= this.getTotalPages()) {
+      // Set the current page to the specified page
       this.currentPage = page;
+
+      // Update the products displayed on the current page
       this.updatePagedProducts();
     }
-  }
-
-  // Function to get an array of page numbers for pagination
-  getPageNumbers(): number[] {
-    const totalPages = this.getTotalPages();
-    return Array.from({ length: totalPages }, (_, i) => i + 1);
-  }
-
-  // Function to get the total number of pages for pagination
-  getTotalPages(): number {
-    return Math.ceil(this.products.length / this.itemsPerPage);
   }
 }

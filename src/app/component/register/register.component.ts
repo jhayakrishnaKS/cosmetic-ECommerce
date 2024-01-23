@@ -5,6 +5,7 @@ import { Register } from 'src/app/model/register';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 import { AppUser } from 'src/app/model/appUser';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,7 @@ export class RegisterComponent {
     path: '/assets/auth.json',
   };
  
-  constructor(private authService:AuthService,private router:Router){}
+  constructor(private authService:AuthService,private router:Router,private toastr:ToastrService){}
  
   person:String='';
   nameRef:String='';
@@ -53,6 +54,10 @@ export class RegisterComponent {
       this.authService.register(newregister).subscribe({
         next:(response:AppResponse)=>{
           this.registers.push(response.data);
+          this.toastr.success('register Successfull', '', {
+            toastClass: 'custom-toast',
+            // positionClass: 'toast-top-center',
+          });
           this.router.navigate(['/login']);
         }
       });

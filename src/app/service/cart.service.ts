@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { AppResponse } from '../model/appResponse';
 import { StorageService } from './storage.service';
 
@@ -13,6 +13,7 @@ export class CartService {
     private storageService: StorageService
   ) {}
 
+  // Get the cart items for the logged-in user
   getCart(): Observable<AppResponse> {
     const userId = this.storageService.getLoggedInUser().id;
     return this.http.get<AppResponse>(
@@ -20,6 +21,7 @@ export class CartService {
     );
   }
 
+  // Delete a product from the cart
   deleteCart(productId: number): Observable<AppResponse> {
     const userId = this.storageService.getLoggedInUser().id;
     return this.http.delete<AppResponse>(
@@ -27,6 +29,7 @@ export class CartService {
     );
   }
 
+  // Update the count of a product in the cart
   updateCartCount(userId: number, beautyProductId: number, count: number): Observable<AppResponse> {
     if (beautyProductId == null) {
       // Handle the case where beautyProductId is null
@@ -46,6 +49,4 @@ export class CartService {
       data
     );
   }
-  
-  
-}  
+}

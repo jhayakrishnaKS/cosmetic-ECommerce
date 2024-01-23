@@ -1,0 +1,22 @@
+.table {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary-900)!important;
+  color: var(--primary-700)!important;
+  border-color: var(--primary-700)!important;
+}
