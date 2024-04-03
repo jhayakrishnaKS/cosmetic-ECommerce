@@ -17,12 +17,24 @@
       <h3 style="color: var(--primary-700)">Order ID: {{ order.id }}</h3>
       <p class="order-status">
         <strong>Status: {{ order.orderStatus }}</strong>
+          <i [class]="getOrderStatusIconClass(order?.orderStatus||'')"></i>
       </p>
+
+
+      <!-- <div class="progress-bar" [ngStyle]="{'background-color': getOrderStatusColor(order?.orderStatus || '')}">
+        <div class="progress-bar-inner" [style.width.%]="getOrderStatusProgress(order?.orderStatus || 0)"></div>
+      </div> -->
+      
+      
+      
       <!-- Display Delivery Address -->
       <p class="delivery-address" >
-        <strong style="color: var(--primary-700)"> Address:</strong> {{ order.address.address }}, {{ order.address.city }},
-        {{ order.address.zipcode }}
+        <strong style="color: var(--primary-700)"> Address:</strong> {{ order.address.address }}, {{ order.address.city }}-
+        {{ order.address.zipcode }},
+          {{ order.address.state }}
+        
       </p>
+      <p> <strong style="color: var(--primary-700)"> phoneNumber:</strong>{{order.address.phoneNumber}}</p>
     </div>
 
     <!-- Ordered Products Section -->
@@ -65,10 +77,3 @@
   <!-- Go Back Button -->
   <a routerLink="/" class="btn btn-primary btn-rounded" id="back-button">Go Back</a>
 </div>
-
-
-<!-- <mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              aria-label="Select page">
-</mat-paginator> -->

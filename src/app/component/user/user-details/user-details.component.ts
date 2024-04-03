@@ -21,7 +21,7 @@ export class UserDetailsComponent implements OnInit {
   };
 
   // Address object for form data
-  address: Address = { id: 0, address: '', city: '', zipcode: 0 };
+  address: Address = { id: 0, address: '', city: '', zipcode: 0,state:'',phoneNumber:0 };
 
   // Error message
   error: string = '';
@@ -36,7 +36,9 @@ export class UserDetailsComponent implements OnInit {
     address: '',
     city: '',
     zipcode: 0,
+    state:'',
     userId: 0,
+    phoneNumber:0
   };
 
   // Flag for editing an existing address
@@ -92,6 +94,8 @@ export class UserDetailsComponent implements OnInit {
       address: addressForm.value.address,
       city: addressForm.value.city,
       zipcode: parseFloat(addressForm.value.zipcode),
+      state:addressForm.value.state,
+      phoneNumber: parseFloat(addressForm.value.phoneNumber),
     };
 
     if (!this.editingAddress) {
@@ -101,7 +105,7 @@ export class UserDetailsComponent implements OnInit {
           if (response && response.data) {
             // Update user details and reset form values
             this.userDetails = response.data.userDetails;
-            this.addressModel = { id: 0, address: '', city: '', zipcode: 0 };
+            this.addressModel = { id: 0, address: '', city: '', zipcode: 0,state:'',phoneNumber:0 };
             // Reload user details to reflect changes
             this.loadUserDetails();
           } else {
@@ -127,6 +131,8 @@ export class UserDetailsComponent implements OnInit {
             address: addressForm.value.address,
             city: addressForm.value.city,
             zipcode: parseFloat(addressForm.value.zipcode),
+            state:addressForm.value.state,
+            phoneNumber: parseFloat(addressForm.value.phoneNumber),
           };
           // Reset the editing flag
           this.editingAddress = false;

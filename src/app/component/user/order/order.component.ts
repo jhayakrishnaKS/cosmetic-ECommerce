@@ -7,7 +7,7 @@ import { StorageService } from 'src/app/service/storage.service';
 import { UserDetail } from 'src/app/model/user-details';
 import { AppUser } from 'src/app/model/appUser';
 import { AnimationOptions } from 'ngx-lottie';
-import { MatSliderChange } from '@angular/material/slider';
+import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 
 @Component({
   selector: 'app-order',
@@ -119,4 +119,59 @@ export class OrderComponent implements OnInit {
       }
     );
   }
+
+  getOrderStatusColor(orderStatus: string | number): string {
+    // Convert to string if it's a number
+    const statusString = typeof orderStatus === 'number' ? orderStatus.toString() : orderStatus;
+  
+    switch (statusString) {
+      case 'Pending':
+        return 'yellow';
+      case 'Confirmed':
+        return 'green';
+      case 'Out for Delivery':
+        return 'pink';
+      case 'Delivered':
+        return 'red';
+      default:
+        return 'gray';
+    }
+  }
+  
+  
+  getOrderStatusProgress(orderStatus: string | number): number {
+    const statusString = typeof orderStatus === 'number' ? orderStatus.toString() : orderStatus;
+    switch (statusString) {
+      
+      case 'Pending':
+        return 25;
+      case 'Confirmed':
+        return 50;
+      case 'Out for Delivery':
+        return 75;
+      case 'Delivered':
+        return 100;
+      default:
+        return 0;
+    }
+  }
+  
+
+  // Assuming orderStatus is of type 'string'
+getOrderStatusIconClass(orderStatus: string | number): string {
+  const statusString = typeof orderStatus === 'number' ? orderStatus.toString() : orderStatus;
+  switch (statusString) {
+    case 'Pending':
+      return 'fas fa-hourglass-start icon-pending';
+    case 'Confirmed':
+      return 'fas fa-check-circle icon-confirmed';
+    case 'Out for Delivery':
+      return 'fas fa-truck icon-out-for-delivery';
+    case 'Delivered':
+      return 'fas fa-check-double icon-delivered';
+    default:
+      return '';
+  }
+}
+
 }

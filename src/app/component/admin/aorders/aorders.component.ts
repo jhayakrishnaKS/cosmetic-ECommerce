@@ -22,7 +22,7 @@ export class AdminOrdersComponent implements OnInit {
   // Variable to store the selected order ID for updating status
   selectedOrderId: number | null = null;
   currentPage: number = 1;
-  itemsPerPage: number = 5; // Adjust the number of items per page as needed
+  itemsPerPage: number = 3; 
   totalPages: number = 1;
   pages: number[] = [];
   pagedUserOrders: any[] = [];
@@ -84,10 +84,10 @@ export class AdminOrdersComponent implements OnInit {
   updateOrderStatus(order: Order) {
     // Map of order statuses to status IDs
     const orderStatusMap: { [key: string]: number } = {
-      Pending: 1,
-      Confirmed: 2,
+      'Pending': 1,
+      'Confirmed': 2,
       'Out for Delivery': 3,
-      Delivered: 4,
+      'Delivered': 4,
     };
 
     // Get the status of the order
@@ -114,8 +114,6 @@ export class AdminOrdersComponent implements OnInit {
             toastClass: 'custom-toast',
             // positionClass: 'toast-top-center',
           });
-          // this.fetchUserOrders();
-          // this.fetchOrderStatus();
         }
       },
       error: (err) => {
@@ -135,26 +133,53 @@ export class AdminOrdersComponent implements OnInit {
     // If the product is found, return its count, otherwise, return 0
     return foundProduct ? foundProduct.count : 0;
   }
-  calculateTotalPages() {
-    this.totalPages = Math.ceil(this.userOrders.length / this.itemsPerPage);
-    this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-  }
 
-  setPage(page: number) {
-    if (page < 1 || page > this.totalPages) {
-      return;
-    }
-    this.currentPage = page;
-    const start = (page - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    this.pagedUserOrders = this.userOrders.slice(start, end);
-  }
+ // Function to calculate the total number of pages 
+calculateTotalPages() {
+  // Calculate the total pages using Math.ceil to round up
+  this.totalPages = Math.ceil(this.userOrders.length / this.itemsPerPage);
 
-  prevPage() {
-    this.setPage(this.currentPage - 1);
-  }
+  // Generate an array representing the available page numbers
+  this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+}
 
-  nextPage() {
-    this.setPage(this.currentPage + 1);
+// Function to set the current page and update the page
+setPage(page: number) {
+  // Set the current page
+  this.currentPage = page;
+
+  // Calculate the start and end indices for slicing the user orders based on the current page
+  const start = (page - 1) * this.itemsPerPage;
+  const end = start + this.itemsPerPage;
+
+  // Slice the user orders to get the subset for the current page
+  this.pagedUserOrders = this.userOrders.slice(start, end);
+}
+
+// Function to navigate to the previous page
+prevPage() {
+  // Call setPage with the previous page number
+  this.setPage(this.currentPage - 1);
+}
+
+// Function to navigate to the next page
+nextPage() {
+  // Call setPage with the next page number
+  this.setPage(this.currentPage + 1);
+}
+getOrderStatusIconClass(orderStatus: string | number): string {
+  const statusString = typeof orderStatus === 'number' ? orderStatus.toString() : orderStatus;
+  switch (statusString) {
+    case 'Pending':
+      return 'fas fa-hourglass-start icon-pending';
+    case 'Confirmed':
+      return 'fas fa-check-circle icon-confirmed';
+    case 'Out for Delivery':
+      return 'fas fa-truck icon-out-for-delivery';
+    case 'Delivered':
+      return 'fas fa-check-double icon-delivered';
+    default:
+      return '';
   }
+}
 }

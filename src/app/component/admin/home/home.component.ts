@@ -83,5 +83,21 @@ export class AdminHomeComponent implements OnInit {
         console.log('An error occurred while fetching user orders:', err);
       },
     });
+
+  }
+  getOrderStatusIconClass(orderStatus: string | number): string {
+    const statusString = typeof orderStatus === 'number' ? orderStatus.toString() : orderStatus;
+    switch (statusString) {
+      case 'Pending':
+        return 'fas fa-hourglass-start icon-pending';
+      case 'Confirmed':
+        return 'fas fa-check-circle icon-confirmed';
+      case 'Out for Delivery':
+        return 'fas fa-truck icon-out-for-delivery';
+      case 'Delivered':
+        return 'fas fa-check-double icon-delivered';
+      default:
+        return '';
+    }
   }
 }

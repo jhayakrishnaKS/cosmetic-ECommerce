@@ -70,4 +70,13 @@
     font-weight: bold;
     margin: 0 10px;
   }
-  
+
+.progress-bar {
+  height: 20px;
+  background-color: #ccc;
+}
+
+.progress-bar-inner {
+  height: 100%;
+  background-color: #4caf50; 
+}

@@ -3,7 +3,9 @@ export interface Address {
   address: string;
   city: string;
   zipcode:   number;
-  userId?: number; 
+  state:string;
+  userId?: number;
+  phoneNumber:number;
 }
 
 

@@ -10,5 +10,6 @@ export interface Order {
   address:Address;
   beautyProduct: BeautyProducts;
   orderStatus: number;
+  orderStatus1?:string;
   orderedBeautyProductList: BeautyProducts[];
 }
